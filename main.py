@@ -4,6 +4,7 @@ from flask import render_template
 import logging
 from bootstrap import bootstrap
 
+# Test
 
 VERSION = '0.0.1'
 app = Flask(__name__)
