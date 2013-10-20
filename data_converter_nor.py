@@ -5,19 +5,33 @@ import json
 import tempfile
 
 
+def unicode_csv_reader(utf8_data, dialect=csv.excel, **kwargs):
+    csv_reader = csv.reader(utf8_data, dialect=dialect, **kwargs)
+    for row in csv_reader:
+        yield [unicode(cell, 'utf-8') for cell in row]
+
+
 def load_dictionary_explanations():
     dictionary_explanations = {}
     dict_file = 'data/ordliste-forklaringer.csv'
-    with open(dict_file) as csvfile:
-        reader = csv.reader(csvfile, delimiter=';')
-        counter = 0
-        for row in reader:
-            if counter == 100:
-                print "100"
-            if row:
-                word_explanation = WordExplanation(unicode(row[1], "iso-8859-1"), unicode(row[2], "iso-8859-1"))
-                dictionary_explanations[unicode(row[0], "iso-8859-1")] = word_explanation
-            counter += 1
+
+    reader = unicode_csv_reader(open(dict_file))
+    for field1, field2, field3 in reader:
+        print field1, field2, field3
+
+    # f = codecs.open(dict_file, encoding='utf-8')
+    #
+    # with open(f) as csvfile:
+    #     #reader = UnicodeReader(csvfile, encoding='utf-8', delimiter=';')
+    #     reader = csv.reader(csvfile, delimiter=';')
+    #     counter = 0
+    #     for row in reader:
+    #         if counter == 100:
+    #             print "100"
+    #         if row:
+    #             word_explanation = WordExplanation(row[1], row[2])
+    #             dictionary_explanations[row[0]] = word_explanation
+    #         counter += 1
     return dictionary_explanations
 
 
@@ -28,13 +42,14 @@ def load_dictionary(dict_expl):
     dict_file = 'data/nor-ordliste2.csv'
     counter = 0
     with open(dict_file) as csvfile:
-        reader = csv.reader(csvfile, delimiter='@')
+        #reader = csv.reader(csvfile, delimiter='@')
+        reader = UnicodeReader(csvfile, encoding='windows-1250', delimiter='@')
         for row in reader:
             counter += 1
-            field1 = unicode(row[0].replace('"', ''), "iso-8859-1")
-            field2 = unicode(row[1].replace('"', ''), "iso-8859-1")
-            field3 = unicode(row[2].replace('"', ''), "iso-8859-1")
-            field4 = unicode(row[3].replace('"', ''), "iso-8859-1")
+            field1 = row[0].replace('"', '')
+            field2 = row[1].replace('"', '')
+            field3 = row[2].replace('"', '')
+            field4 = row[3].replace('"', '')
 
             # print "Rad1: " + field1
             # print "Rad2: " + field2
@@ -162,7 +177,7 @@ if __name__ == '__main__':
     dictionary = load_dictionary(dictionary_explanations)
     print "Loaded " + str(len(dictionary)) + " from dictionary file."
 
-    # print_dictionary_explanations(dictionary_explanations)
+    print_dictionary_explanations(dictionary_explanations)
     # print_dictionary(dictionary)
 
     # json_string = json.dump(dictionary)
@@ -179,3 +194,5 @@ if __name__ == '__main__':
     # with codecs.open(dict_file_name, 'w', "utf-8") as f:
     #     f.write(json_string)
     # write_dictionary(dictionary)
+
+
