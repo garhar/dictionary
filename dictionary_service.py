@@ -6,7 +6,7 @@ class Dictionary:
     dictionary = {}
 
     def __init__(self):
-        json_text_file = 'data/ordliste_nytt_format3.csv'
+        json_text_file = 'data/dictionary.json'
         with open(json_text_file) as json_file:
             self.dictionary = json.load(json_file)
 

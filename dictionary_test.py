@@ -1,3 +1,4 @@
+#coding=iso-8859-1
 from dictionary_service import Dictionary
 
 
@@ -5,7 +6,7 @@ if __name__ == '__main__':
     print "dictionary test..."
 
     dictionary = Dictionary()
-    search_term = u'bÃ¥nn'
+    search_term = u'påta'
     print "search for: " + search_term
 
     result = dictionary.find_nor_words(search_term)
