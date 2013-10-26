@@ -1,5 +1,14 @@
 body {
+    font-family:"Georgia", Times, serif;
     padding-top: 60px;
+}
+
+.btn {
+    font-family:"Georgia", Times, serif;
+}
+
+.label {
+    font-family:"Georgia", Times, serif;
 }
 
 th {
