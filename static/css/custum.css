@@ -1,0 +1,62 @@
+body {
+    padding-top: 60px;
+}
+
+th {
+    font-size: large;
+    background: lightgray;
+    font-weight: normal;
+}
+
+table th:first-child{
+    border-radius:4px 0 0 4px;
+}
+
+table th:last-child{
+    border-radius:0 4px 4px 0;
+}
+
+.normal {
+    font-size: medium;
+    font-weight: normal;
+}
+
+.field-title {
+    font-size: medium;
+    font-weight: bold;
+}
+
+.nor {
+    font-size: large;
+    font-weight: bold;
+    /*text-decoration:underline;*/
+    /*padding-top:6px;*/
+}
+
+.nor_expl {
+    /*font-size: medium;*/
+    font-weight: normal;
+    /*text-decoration:underline;*/
+    /*padding-top:6px;*/
+}
+
+.nor_abr {
+    /*font-size: medium;*/
+    font-weight: normal;
+    /*text-decoration:underline;*/
+    /*padding-top:6px;*/
+}
+
+.eng {
+    font-size: large;
+    font-weight: bold;
+    /*text-decoration:underline;*/
+    /*padding-top:6px;*/
+}
+
+.eng_abr {
+    /*font-size: medium;*/
+    font-weight: normal;
+    /*text-decoration:underline;*/
+    /*padding-top:6px;*/
+}

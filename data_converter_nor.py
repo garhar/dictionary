@@ -60,13 +60,13 @@ def load_dictionary(dict_expl):
             field4 = unicode(row[3].replace('"', ''), "iso-8859-1")
 
             # Row 1
-            nor_word = ""
-            nor_word_expl = ""
-            nor_word_abr = []
+            nor = ""
+            nor_expl = ""
+            nor_abr = []
             if field1:
                 field1split = field1.split(" / ")
                 if len(field1split) > 0 and field1split[0]:
-                    nor_word = field1split[0]
+                    nor = field1split[0]
                 if len(field1split) > 1 and field1split[1]:
                     temp_nor_word_exp = field1split[1]
                     field1split2 = temp_nor_word_exp.split("  ")
@@ -74,57 +74,49 @@ def load_dictionary(dict_expl):
                     for word2 in field1split2:
                         if word2 and word_in_dictionary_explanations(dict_expl,
                                                                      word2.strip()):
-                            nor_word_abr.append(word2.strip())
+                            nor_abr.append(word2.strip())
                         elif word2:
-                            nor_word_expl = nor_word_expl + nor_word_exp_split_char + word2.strip()
+                            nor_expl = nor_expl + nor_word_exp_split_char + word2.strip()
                             nor_word_exp_split_char = " "
 
 
             # Row 2
-            eng_word = ""
+            eng = ""
             if field2:
-                eng_word = field2.strip()
+                eng = field2.strip()
 
             # Row 3 always empty
 
             # Row 4
-            eng_word_abr = {}
+            eng_word_abr_string = None
+            eng_abr = []
             if field4:
                 field4split = field4.split(" ; ")
                 for word4 in field4split:
                     if word4.find("obso") == -1:
-                        containsObso = False
+                        obsolete = ")"
                     else:
-                        containsObso = True
+                        obsolete = ", obsolete)"
                     if word4.find("(NO)") != -1:
-                        eng_word_abr['NO'] = {
-                        "abr": word4.replace("(NO)", "").replace("obso",
-                                                                 "").strip(),
-                        'obso': containsObso}
+                        eng_word_abr_string = word4.replace("(NO)", "").replace("obso", "").strip() + " (NO" + obsolete
                     elif word4.find("(US)") != -1:
-                        eng_word_abr['US'] = {
-                        "abr": word4.replace("(US)", "").replace("obso",
-                                                                 "").strip(),
-                        'obso': containsObso}
+                        eng_word_abr_string = word4.replace("(US)", "").replace("obso", "").strip() + " (US" + obsolete
                     elif word4.find("(UK)") != -1:
-                        eng_word_abr['UK'] = {
-                        "abr": word4.replace("(UK)", "").replace("obso",
-                                                                 "").strip(),
-                        'obso': containsObso}
+                        eng_word_abr_string = word4.replace("(UK)", "").replace("obso", "").strip() + " (UK" + obsolete
+                    elif word4.find("(NATO)") != -1:
+                        eng_word_abr_string = word4.replace("(NATO)", "").replace("obso", "").strip() + " (NATO" + obsolete
                     else:
-                        eng_word_abr['NATO'] = {
-                        "abr": word4.replace("(NATO)", "").replace("obso",
-                                                                   "").strip(),
-                        'obso': containsObso}
+                        eng_word_abr_string = word4.replace("(NATO)", "").replace("obso", "").strip() + " (ALL" + obsolete
+                    eng_abr.append(eng_word_abr_string)
+
             word = {
-                'nor': nor_word,
-                'nor_expl': nor_word_expl,
-                'nor_abr': nor_word_abr,
-                'eng': eng_word,
-                'eng_abr': eng_word_abr,
-                'eng_pronon': None
+                'nor': nor,
+                'nor_expl': nor_expl,
+                'nor_abr': nor_abr,
+                'eng': eng,
+                'eng_abr': eng_abr,
             }
-            dictionary[str(counter)] = word
+            dictionary[counter] = word
     return dictionary
 
 
