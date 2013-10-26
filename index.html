@@ -43,13 +43,13 @@
                                 <input id="query" name="query" type="text" value="{{ query }}" class="span5">
                             </div>
                             <div class="btn-toolbar" data-toggle="buttons-radio">
-                                <button type="button" class="search-option btn btn-info active" value="0">Eksakt ord</button>
-                                <button type="button" class="search-option btn btn-info" value="1">Begynner med</button>
-                                <button type="button" class="search-option btn btn-info" value="2">Inneholder</button>
+                                <button type="button" class="search-option btn btn-custom active" value="0">Eksakt ord</button>
+                                <button type="button" class="search-option btn btn-custom" value="1">Begynner med</button>
+                                <button type="button" class="search-option btn btn-custom" value="2">Inneholder</button>
                             </div>
                         </div>
                         <input type="hidden" id="search-option" name="search-option" value="0">
-                        <button class="btn btn-info btn-large" onclick="javascript:submitForm(parent)"><i class="icon-white icon-search"></i> Søk</button>
+                        <button class="btn btn-custom btn-large" onclick="javascript:submitForm(parent)"><i class="icon-white icon-search"></i> Søk</button>
                     </form>
                     <label class="normal">Fant {{ numberOfHits }} ord</label>
 
@@ -60,7 +60,7 @@
             <div class="span8 offset2">
                 <div class="well">
 
-                <table class="table">
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>

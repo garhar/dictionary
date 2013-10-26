@@ -69,3 +69,20 @@ table th:last-child{
     /*text-decoration:underline;*/
     /*padding-top:6px;*/
 }
+
+.btn-custom {
+    background-color: hsl(360, 0%, 24%) !important;
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#b7b7b7", endColorstr="#3d3d3d");
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#b7b7b7), to(#3d3d3d));
+    background-image: -moz-linear-gradient(top, #b7b7b7, #3d3d3d);
+    background-image: -ms-linear-gradient(top, #b7b7b7, #3d3d3d);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #b7b7b7), color-stop(100%, #3d3d3d));
+    background-image: -webkit-linear-gradient(top, #b7b7b7, #3d3d3d);
+    background-image: -o-linear-gradient(top, #b7b7b7, #3d3d3d);
+    background-image: linear-gradient(#b7b7b7, #3d3d3d);
+    border-color: #3d3d3d #3d3d3d hsl(360, 0%, 12%);
+    color: #fff !important;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.79);
+    -webkit-font-smoothing: antialiased;
+}
