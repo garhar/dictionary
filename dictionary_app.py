@@ -35,7 +35,8 @@ class WebApplication(webapp2.RequestHandler):
             elif searchOption and searchOption == "2":
                 results = Dictionary.find_word_contains(Dictionary(), query, 'nor')
             else:
-                raise Exception("Invalid search option!")
+                logging.info("WARNING: SearchOption missing!")
+                results = Dictionary.find_word_excact(Dictionary(), query, 'nor')
 
             print "results: " + str(len(results))
         else:

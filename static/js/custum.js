@@ -1,20 +1,20 @@
 $( document ).ready(function() {
 
-//    $(".btn-group button").click(function () {
-//        $("#search-option").val($(this).val());
-//    });
+    if ($("#search-option").val() == 1) {
+        $("#exactWord").removeClass('active');
+        $("#startsWith").addClass('active');
+    } else if ($("#search-option").val() == 2) {
+        $("#exactWord").removeClass('active');
+        $("#containsString").addClass('active');
+    }
 
-//    if (searchOption == '1') {
-//        alert('searchOption == 1');
-//        $(".btn-group").toggle();
-//    }
-
+    $(".btn-toolbar button").click(function () {
+        $("#search-option").val($(this).val());
+    });
     $("#query").focus();
 });
 
 function submitForm(form) {
-    var active = $('.search-option[class*="active"]').val();
-    $('#search-option').val(active);
     $('#search-form').submit();
 }
 
