@@ -106,7 +106,7 @@ def load_dictionary(dict_expl):
                     elif word4.find("(NATO)") != -1:
                         eng_word_abr_string = word4.replace("(NATO)", "").replace("obso", "").strip() + " (NATO" + obsolete
                     else:
-                        eng_word_abr_string = word4.replace("(NATO)", "").replace("obso", "").strip() + " (ALL" + obsolete
+                        eng_word_abr_string = word4.replace("obso", "").strip() + " (US, UK, NATO" + obsolete
                     eng_abr.append(eng_word_abr_string)
 
             word = {

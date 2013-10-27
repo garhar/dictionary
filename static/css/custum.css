@@ -50,7 +50,7 @@ table th:last-child{
 }
 
 .nor_abr {
-    /*font-size: medium;*/
+    font-size: large;
     font-weight: normal;
     /*text-decoration:underline;*/
     /*padding-top:6px;*/
@@ -64,7 +64,7 @@ table th:last-child{
 }
 
 .eng_abr {
-    /*font-size: medium;*/
+    font-size: large;
     font-weight: normal;
     /*text-decoration:underline;*/
     /*padding-top:6px;*/
