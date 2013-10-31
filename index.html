@@ -5,7 +5,7 @@
         <link rel="shortcut icon"
               href="static/images/favicon.ico">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Normill ordliste</title>
+        <title>Normil ordliste</title>
         <link href="static/css/bootstrap.css"
               rel="stylesheet" media="screen">
         <link href="static/css/bootstrap-responsive.css"
@@ -40,30 +40,47 @@
         </div>
 
         <div class="row-fluid span10 offset1">
-
             <form id="search-form" class="well span5">
                 <div class="control-group">
-                    <div class="controls">
-                        <label class="field-title" for="query">Søk etter norsk ord: </label>
-                        <div class="controls">
-                            <input id="query" name="query" type="text" value="{{ query }}">
-                        </div>
-                    </div>
-                    <br>
-                    <div class="controls">
-                        <div class="btn-toolbar" data-toggle="buttons-radio">
-                            <button type="button" id="exactWord" class="search-option btn btn-info active" value="0">Eksakt ord</button>
-                            <button type="button" id="startsWith" class="search-option btn btn-info" value="1">Begynner med</button>
-                            <button type="button" id="containsString" class="search-option btn btn-info" value="2">Inneholder</button>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="controls">
-                        <input type="hidden" id="search-option" name="search-option" value="{{ searchOption }}">
-                        <button class="btn btn-info btn-lg" onclick="javascript:submitForm(parent)"><i class="icon-white icon-search"></i> Søk</button>
-                    </div>
-                    <br>
-                    <label class="field-title">Fant {{ numberOfHits }} ord</label>
+                    <table id="searchtable" class="table">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="controls">
+                                        <label class="field-title" for="query">Søk etter norsk ord: </label>
+                                        <div class="controls">
+                                            <input id="query" name="query" type="text" value="{{ query }}">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="controls">
+                                        <label for="radioGroup" class="field-title">Søkemuligheter</label>
+                                        <label class="radio ">
+                                            <input type="radio" name="search-option" id="radio1" value="exactWord" checked>Eksakt ord</label>
+                                        <label class="radio">
+                                            <input type="radio" name="search-option" id="radio2" value="startsWith">Begynner med</label>
+                                        <label class="radio">
+                                            <input type="radio" name="search-option" id="radio3" value="contains">Inneholder</label>
+                                        <input id="searchOption" type="hidden" value="{{ searchOption }}">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="controls">
+                                        <input type="hidden" id="search-option" name="search-option" value="{{ searchOption }}">
+                                        <button class="btn btn-info btn-lg" onclick="javascript:submitForm(parent)"><i class="icon-white icon-search"></i> Søk</button>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<label class="field-title">Fant {{ numberOfHits }} ord</label>
+                                    </div>
+
+                                </td>
+                                <td>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </form>
 
@@ -81,19 +98,16 @@
                     </li>
                 </ul>
                 <p>
-                    <label class="field-title">Kopier norsk og engelsk ord</label>
-                    <label class="normal">Klikk på ordet for å kopiere det til utklippstavlen</label>
+                    <label class="field-title">Kopier norske og engelske ord</label>
+                    <h5>Klikk på ordet for å kopiere det til utklippstavlen</h5>
                 <p>
                     <label class="field-title">Bruksområder</label>
-                    <label class="normal">La musepekeren hvile over bruksområdet for en mer utdypende forklaring.</label>
+                    <h5>La musepekeren hvile over bruksområdet for en mer utdypende forklaring.</h5>
             </div>
-
         </div>
-
 
         <div class="row-fluid">
             <div class="span10 offset1">
-{#                <div class="well">#}
                 <table id="resulttable" class="table  table-responsive table-condensed" style="table-layout: fixed; width: 100%">
                     <thead>
                         <tr>
@@ -153,7 +167,6 @@
                     {% endfor %}
                     </tbody>
                 </table>
-
             </div>
         </div>
             <div class="row-fluid">
@@ -162,6 +175,5 @@
                 </div>
             </div>
         </div>
-
     </body>
 </html>

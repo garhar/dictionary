@@ -21,16 +21,20 @@ class WebApplication(webapp2.RequestHandler):
         else:
             logging.info("query: None")
 
+        test = self.request.get('radioGroup')
+        logging.info("radioGroup: " + test)
+
+
         results = None
         searchOption = None
         if query:
             searchOption = self.request.get('search-option')
-            logging.info("searchOptions: " + searchOption)
-            if searchOption and searchOption == "0":
+            logging.info("search-option: " + searchOption)
+            if searchOption and searchOption == "exactWord":
                 results = Dictionary.find_word_excact(Dictionary(), query, 'nor')
-            elif searchOption and searchOption == "1":
+            elif searchOption and searchOption == "startsWith":
                 results = Dictionary.find_word_startswith(Dictionary(), query, 'nor')
-            elif searchOption and searchOption == "2":
+            elif searchOption and searchOption == "contains":
                 results = Dictionary.find_word_contains(Dictionary(), query, 'nor')
             else:
                 logging.info("WARNING: SearchOption missing!")

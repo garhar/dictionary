@@ -4,31 +4,38 @@ body {
     padding-top: 65px;
 }
 
+.well {
+    height: 260px;
+}
+
 .btn {
     font-family:"Georgia", Times, serif;
     border-color: #72a8c0;
 }
 
+
+#searchtable td { border-top: none; }
+
 #resulttable {
     word-wrap: break-word;
 }
 
-th {
+#resulttable th {
     font-size: normal;
     font-weight: bold;
     color:#ffffff;
     background-color: #72a8c0;
 }
 
-.odd {
+#resulttable .odd {
     background: lightyellow;
 }
 
-table th:first-child{
+#resulttable table th:first-child{
     border-radius:4px 0 0 4px;
 }
 
-table th:last-child{
+#resulttable table th:last-child{
     border-radius:0 4px 4px 0;
 }
 
