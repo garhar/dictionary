@@ -1,6 +1,11 @@
+
 body {
     font-family:"Georgia", Times, serif;
-    padding-top: 60px;
+    padding-top: 65px;
+}
+
+.header-well {
+    height: 260px;
 }
 
 .btn {
@@ -18,8 +23,13 @@ body {
 
 th {
     font-size: large;
-    background: lightgray;
     font-weight: normal;
+    color:#ffffff;
+    background-color: #49afcd;
+}
+
+.odd {
+    background: #e9eff8;
 }
 
 table th:first-child{
@@ -31,7 +41,7 @@ table th:last-child{
 }
 
 .normal {
-    font-size: normal;
+    font-size: small;
     font-weight: normal;
 }
 
@@ -44,13 +54,13 @@ table th:last-child{
 .nor {
     font-size: large;
     font-weight: bold;
-    white-space: nowrap;
+    /*white-space: nowrap;*/
 }
 
 .eng {
     font-size: large;
     font-weight: bold;
-    white-space: nowrap;
+    /*white-space: nowrap;*/
 }
 
 .btn-custom {
