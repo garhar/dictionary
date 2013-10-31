@@ -4,32 +4,24 @@ body {
     padding-top: 65px;
 }
 
-.header-well {
-    height: 260px;
-}
-
 .btn {
     font-family:"Georgia", Times, serif;
+    border-color: #72a8c0;
 }
 
-.label {
-    font-family:"Georgia", Times, serif;
-}
-
-.badge {
-    font-family:"Georgia", Times, serif;
-    font-size: x-small;
+#resulttable {
+    word-wrap: break-word;
 }
 
 th {
-    font-size: large;
-    font-weight: normal;
+    font-size: normal;
+    font-weight: bold;
     color:#ffffff;
-    background-color: #49afcd;
+    background-color: #72a8c0;
 }
 
 .odd {
-    background: #e9eff8;
+    background: lightyellow;
 }
 
 table th:first-child{
@@ -40,42 +32,14 @@ table th:last-child{
     border-radius:0 4px 4px 0;
 }
 
-.normal {
-    font-size: small;
-    font-weight: normal;
-}
-
 .field-title {
     font-size: medium;
     font-weight: bold;
     white-space: nowrap;
 }
 
-.nor {
-    font-size: large;
+.normal {
+    font-size: normal;
     font-weight: bold;
-    /*white-space: nowrap;*/
-}
-
-.eng {
-    font-size: large;
-    font-weight: bold;
-    /*white-space: nowrap;*/
-}
-
-.btn-custom {
-    background-color: hsl(360, 0%, 24%) !important;
-    background-repeat: repeat-x;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#b7b7b7", endColorstr="#3d3d3d");
-    background-image: -khtml-gradient(linear, left top, left bottom, from(#b7b7b7), to(#3d3d3d));
-    background-image: -moz-linear-gradient(top, #b7b7b7, #3d3d3d);
-    background-image: -ms-linear-gradient(top, #b7b7b7, #3d3d3d);
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #b7b7b7), color-stop(100%, #3d3d3d));
-    background-image: -webkit-linear-gradient(top, #b7b7b7, #3d3d3d);
-    background-image: -o-linear-gradient(top, #b7b7b7, #3d3d3d);
-    background-image: linear-gradient(#b7b7b7, #3d3d3d);
-    border-color: #3d3d3d #3d3d3d hsl(360, 0%, 12%);
-    color: #fff !important;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.79);
-    -webkit-font-smoothing: antialiased;
+    white-space: pre-wrap;
 }
