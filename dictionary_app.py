@@ -8,8 +8,6 @@ from dictionary import Dictionary
 class WebApplication(webapp2.RequestHandler):
     def get(self):
 
-        assert isinstance(self.request.get("query"), unicode)
-
         logging.info("request.get:" + self.request.get('query'))
         query = self.request.get('query')
 
@@ -46,7 +44,10 @@ class WebApplication(webapp2.RequestHandler):
         if results:
             numberOfHits = len(results)
 
+        dictionary = Dictionary()
+
         template_values = {
+            'dictionary': dictionary,
             'query': query,
             'searchOption': searchOption,
             'numberOfHits': numberOfHits,

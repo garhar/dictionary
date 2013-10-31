@@ -11,6 +11,11 @@ body {
     font-family:"Georgia", Times, serif;
 }
 
+.badge {
+    font-family:"Georgia", Times, serif;
+    font-size: x-small;
+}
+
 th {
     font-size: large;
     background: lightgray;
@@ -26,48 +31,26 @@ table th:last-child{
 }
 
 .normal {
-    font-size: medium;
+    font-size: normal;
     font-weight: normal;
 }
 
 .field-title {
     font-size: medium;
     font-weight: bold;
+    white-space: nowrap;
 }
 
 .nor {
     font-size: large;
     font-weight: bold;
-    /*text-decoration:underline;*/
-    /*padding-top:6px;*/
-}
-
-.nor_expl {
-    /*font-size: medium;*/
-    font-weight: normal;
-    /*text-decoration:underline;*/
-    /*padding-top:6px;*/
-}
-
-.nor_abr {
-    font-size: large;
-    font-weight: normal;
-    /*text-decoration:underline;*/
-    /*padding-top:6px;*/
+    white-space: nowrap;
 }
 
 .eng {
     font-size: large;
     font-weight: bold;
-    /*text-decoration:underline;*/
-    /*padding-top:6px;*/
-}
-
-.eng_abr {
-    font-size: large;
-    font-weight: normal;
-    /*text-decoration:underline;*/
-    /*padding-top:6px;*/
+    white-space: nowrap;
 }
 
 .btn-custom {

@@ -25,16 +25,6 @@ def print_dictionary_explanations(dict_expl):
             'eng']
 
 
-def export_dict_expl_csv(dict_expl):
-    export_dict_expl_csv = 'data/dict_expl.csv'
-    with codecs.open(export_dict_expl_csv, 'w+',
-                     "iso-8859-1") as dict_expl_csv_file:
-        for expl in dict_expl.keys():
-            dict_expl_csv_file.write(
-                expl + ";" + dict_expl[expl]['nor'] + ";" + dict_expl[expl][
-                    'eng'])
-
-
 def export_dict_expl_json(dict_expl):
     export_dict_expl_json = 'data/dict_expl.json'
     with codecs.open(export_dict_expl_json, 'w+',
@@ -63,6 +53,7 @@ def load_dictionary(dict_expl):
             nor = ""
             nor_expl = ""
             nor_abr = []
+            nor_abr_dict = {}
             if field1:
                 field1split = field1.split(" / ")
                 if len(field1split) > 0 and field1split[0]:
@@ -72,9 +63,12 @@ def load_dictionary(dict_expl):
                     field1split2 = temp_nor_word_exp.split("  ")
                     nor_word_exp_split_char = ""
                     for word2 in field1split2:
-                        if word2 and word_in_dictionary_explanations(dict_expl,
+                        nor_abr_dict = {}
+                        if word2 and is_word_in_dictionary_expl(dict_expl,
                                                                      word2.strip()):
-                            nor_abr.append(word2.strip())
+                            nor_abr_dict['abbr'] = word2.strip()
+                            nor_abr_dict['abbr_expl'] = get_word_in_dictionary_expl(dict_expl, word2.strip())
+                            nor_abr.append(nor_abr_dict)
                         elif word2:
                             nor_expl = nor_expl + nor_word_exp_split_char + word2.strip()
                             nor_word_exp_split_char = " "
@@ -88,33 +82,41 @@ def load_dictionary(dict_expl):
             # Row 3 always empty
 
             # Row 4
-            eng_word_abr_string = None
+            eng_abr_dict = {}
             eng_abr = []
             if field4:
                 field4split = field4.split(" ; ")
                 for word4 in field4split:
+
                     if word4.find("obso") == -1:
-                        obsolete = ")"
+                        eng_abr_dict['obso'] = ''
                     else:
-                        obsolete = ", obsolete)"
+                        eng_abr_dict['obso'] = 'obsolete'
+
                     if word4.find("(NO)") != -1:
-                        eng_word_abr_string = word4.replace("(NO)", "").replace("obso", "").strip() + " (NO" + obsolete
+                        # Needed?
+                        eng_abr_dict['language'] = 'NO'
+                        eng_abr_dict['word'] = word4.replace("(NO)", "").replace("obso", "").strip()
                     elif word4.find("(US)") != -1:
-                        eng_word_abr_string = word4.replace("(US)", "").replace("obso", "").strip() + " (US" + obsolete
+                        eng_abr_dict['language'] = 'US'
+                        eng_abr_dict['word'] = word4.replace("(US)", "").replace("obso", "").strip()
                     elif word4.find("(UK)") != -1:
-                        eng_word_abr_string = word4.replace("(UK)", "").replace("obso", "").strip() + " (UK" + obsolete
+                        eng_abr_dict['language'] = 'UK'
+                        eng_abr_dict['word'] = word4.replace("(UK)", "").replace("obso", "").strip()
                     elif word4.find("(NATO)") != -1:
-                        eng_word_abr_string = word4.replace("(NATO)", "").replace("obso", "").strip() + " (NATO" + obsolete
+                        eng_abr_dict['language'] = 'NATO'
+                        eng_abr_dict['word'] = word4.replace("(NATO)", "").replace("obso", "").strip()
                     else:
-                        eng_word_abr_string = word4.replace("obso", "").strip() + " (US, UK, NATO" + obsolete
-                    eng_abr.append(eng_word_abr_string)
+                        eng_abr_dict['language'] = 'US, UK, NATO'
+                        eng_abr_dict['word'] = word4.replace("obso", "").strip()
+                    eng_abr.append(eng_abr_dict)
 
             word = {
                 'nor': nor,
                 'nor_expl': nor_expl,
                 'nor_abr': nor_abr,
                 'eng': eng,
-                'eng_abr': eng_abr,
+                'eng_abr': eng_abr
             }
             dictionary[counter] = word
     return dictionary
@@ -126,6 +128,7 @@ def print_dictionary(dictionary):
         print "-----"
     print "The dictionary contains " + str(len(dictionary)) + " words."
 
+
 def export_dictionary_json(dictionary):
     export_dictionary_json = 'data/dictionary.json'
     with codecs.open(export_dictionary_json, 'w+',
@@ -135,20 +138,20 @@ def export_dictionary_json(dictionary):
         export_dictionary_json_file.flush()
 
 
-# def export_dictionary_csv(dictionary):
-#     dict_file_name = 'data/ordliste.csv'
-#     with codecs.open(dict_file_name, 'w+', "iso-8859-1") as dictionary_csv:
-#         for word in dictionary.keys():
-#             dictionary_csv.write(dictionary[word]['nor'] + '@' + dictionary[word]['nor_expl'] + '@'
-#                     + dictionary[word]['nor_abr'] + '@' + dictionary[word]['eng'] + '@'
-#                     + dictionary[word]['eng_pronon'] + '@' + dictionary[word]['eng_abr'] + '\n')
-
-
-def word_in_dictionary_explanations(dict_expl, word):
+def is_word_in_dictionary_expl(dict_expl, abbr):
     for dx in dictionary_explanations:
-        if word == dx:
+        if abbr == dx:
             return True
     return False
+
+
+def get_word_in_dictionary_expl(dict_expl, abbr):
+    if not dict_expl:
+        return None
+    for abbr_key in dict_expl.keys():
+        if abbr_key == abbr:
+            return dict_expl[abbr_key]
+    return None
 
 
 if __name__ == '__main__':
@@ -161,10 +164,6 @@ if __name__ == '__main__':
     dictionary = load_dictionary(dictionary_explanations)
     print "Loaded " + str(len(dictionary)) + " from dictionary file."
 
-    #print_dictionary_explanations(dictionary_explanations)
-    #export_dict_expl_csv(dictionary_explanations)
-    export_dict_expl_json(dictionary_explanations)
-
-    #print_dictionary(dictionary)
-    #export_dictionary_csv(dictionary)
+    print "Exporting dictionary..."
     export_dictionary_json(dictionary)
+    print "Dictionary exported..."

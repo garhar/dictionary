@@ -1,25 +1,15 @@
 import json
+from operator import itemgetter
 
 
 class Dictionary():
-
     dictionary = None
 
     def __init__(self):
 
-        json_expl_file = 'data/dict_expl.json'
-        with open(json_expl_file) as json_file:
-            self.dict_expl = json.load(json_file)
-
         json_dictionary_file = 'data/dictionary.json'
         with open(json_dictionary_file) as json_file:
             self.dictionary = json.load(json_file)
-
-    def get_short_expl(self, short_expl):
-        for dx in self.dict_expl:
-            if short_expl == dx:
-                return dx
-        return None
 
     def find_word_excact(self, search_term, language='nor'):
         if not self.dictionary:
@@ -28,8 +18,11 @@ class Dictionary():
         i = 0
         for word in self.dictionary.keys():
             if self.dictionary[word][language] == search_term:
-                result.append(Word(self.dictionary[word]))
+                wordClass = Word(self.dictionary[word])
+                result.append(wordClass)
             i += 1
+        result = sorted(result, key=lambda k: (
+        k[language].lower(), k[self.oposite(language)].lower()))
         return result
 
     def find_word_startswith(self, search_term, language='nor'):
@@ -41,6 +34,8 @@ class Dictionary():
             if self.dictionary[word][language].startswith(search_term):
                 result.append(Word(self.dictionary[word]))
             i += 1
+        result = sorted(result, key=lambda k: (
+        k[language].lower(), k[self.oposite(language)].lower()))
         return result
 
     def find_word_contains(self, search_term, language='nor'):
@@ -52,10 +47,19 @@ class Dictionary():
             if self.dictionary[word][language].find(search_term) != -1:
                 result.append(Word(self.dictionary[word]))
             i += 1
+        result = sorted(result, key=lambda k: (
+        k[language].lower(), k[self.oposite(language)].lower()))
         return result
+
+    def oposite(self, language):
+        if language == 'nor':
+            return 'eng'
+        else:
+            return 'nor'
 
 
 class Word(dict):
+    nor_abr_expl = []
 
     def __init__(self, *args, **kwargs):
         dict.__init__(self, *args, **kwargs)

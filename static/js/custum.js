@@ -18,3 +18,20 @@ function submitForm(form) {
     $('#search-form').submit();
 }
 
+//var clip = new ZeroClipboard( document.getElementById("copy-button"), {
+//    moviePath: "/static/flash/ZeroClipboard.swf"
+//} );
+//
+//clip.on( "load", function(client) {
+//    alert( "movie is loaded" );
+//
+//    client.on( "complete", function(client, args) {
+//        alert('test');
+//        this.style.display = "none";
+//        alert("Copied text to clipboard: " + args.text );
+//    } );
+//} );
+//
+//function setupClipboard(element, counter) {
+//    alert('test clip...');
+//}
