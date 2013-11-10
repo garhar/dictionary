@@ -1,0 +1,65 @@
+<div class="row">
+    <table id="resulttable" class="table table-condensed table-bordered table-hover" style="table-layout: auto; width: 100%">
+        <thead>
+        <tr>
+            <th>
+                Norske termer, eventuelt med forklaring
+            </th>
+            <th>
+                Bruksområder
+            </th>
+            <th>
+                Engelske termer
+            </th>
+            <th>
+                Forkortelser / Akronymer
+            </th>
+        </tr>
+        </thead>
+        </tbody>
+        {% for word in results %}
+            <tr>
+                <td>
+                    {#                            <button id="nor-word-{{ forloop.counter0 }}" data-clipboard-text="" class="btn btn-xs btn-default word"  title="Klikk for å kopiere ordet til utklippstavlen">{{ word.nor }}</button>#}
+                    <label id="nor-word-{{ forloop.counter0 }}" data-clipboard-text="" class="word"  title="Klikk for å kopiere ordet til utklippstavlen">{{ word.nor }}</label>
+                    {% if word.nor_expl %}
+                        <br><label class="normal">{{ word.nor_expl }}</label>
+                    {% endif %}
+                </td>
+                <td>
+                    {% for abbr in word.nor_abr %}
+                        {#                                <button class="btn btn-xs btn-default normal" title="{{ abbr.abbr_expl.nor }}">{{ abbr.abbr }}</button>#}
+                        <label class="badge normal" title="{{ abbr.abbr_expl.nor }}">{{ abbr.abbr }}</label>
+                    {% endfor %}
+                </td>
+                <td>
+                    {#                            <button id="eng-word-{{ forloop.counter0 }}" data-clipboard-text="" class="btn btn-xs btn-default word" title="Klikk for å kopiere ordet til utklippstavlen">{{ word.eng }}</button>#}
+                    <label id="eng-word-{{ forloop.counter0 }}" data-clipboard-text="" class="word" title="Klikk for å kopiere ordet til utklippstavlen">{{ word.eng }}</label>
+                </td>
+                <td>
+                    {% for abr in word.eng_abr %}
+                        {#                                <button title="{{ abr.obso }}" class="btn btn-xs btn-default normal">{{ abr.word }}&nbsp;&nbsp;({{ abr.language }})</button>#}
+                        <label title="{{ abr.obso }}" class="badge normal">{{ abr.word }}&nbsp;&nbsp;({{ abr.language }})</label>
+                    {% endfor %}
+                </td>
+            </tr>
+            <script>
+                var clip{{ forloop.counter0 }} = new ZeroClipboard( document.getElementById("nor-word-{{ forloop.counter0 }}"), {
+                    moviePath: "/static/flash/ZeroClipboard.swf"
+                } );
+                document.getElementById("nor-word-{{ forloop.counter0 }}").setAttribute('data-clipboard-text', document.getElementById('nor-word-{{ forloop.counter0 }}').innerText);
+
+                var clip{{ forloop.counter0 }} = new ZeroClipboard( document.getElementById("eng-word-{{ forloop.counter0 }}"), {
+                    moviePath: "/static/flash/ZeroClipboard.swf"
+                } );
+                document.getElementById("eng-word-{{ forloop.counter0 }}").setAttribute('data-clipboard-text', document.getElementById('eng-word-{{ forloop.counter0 }}').innerText);
+                clip{{ forloop.counter0 }}.on( "load", function(client) {
+                    client.on( "complete", function(client, args) {
+                        alert("Ordet '" + args.text + "' ble kopiert til utklippstavlen");
+                    } );
+                } );
+            </script>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
