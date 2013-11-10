@@ -4,6 +4,7 @@ import logging
 from google.appengine.ext.webapp import template
 from dictionary import Dictionary
 
+dictionary = None
 
 class WebApplication(webapp2.RequestHandler):
     def get(self):
@@ -70,13 +71,13 @@ app = webapp2.WSGIApplication([('/', WebApplication),
 
 
 def get_dictionary():
-    # TODO Fix caching of dictionary
-    # app = webapp2.get_app()
-    # dictionary = app.registry['dictionary']
-    # if not dictionary:
-    dictionary = Dictionary()
-    #     app.registry['dictionary'] = dictionary
-    #     logging.info('Initializeing dictionary...')
-    # else:
-    #     logging.info('Dictionary was already initiilized...')
+    app = webapp2.get_app()
+    dictionary = app.registry.get('dictionary')
+    global dictionary
+    if not dictionary:
+        dictionary = Dictionary()
+        app.registry['dictionary'] = dictionary
+        logging.info('Initializeing dictionary...')
+    else:
+        logging.info('Dictionary was already initiilized...')
     return dictionary
