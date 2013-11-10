@@ -14,7 +14,7 @@ logger = logging.getLogger('velox')
 
 @app.route("/main", methods=['GET'])
 def main():
-    return render_template('main.html', hello='Hello Main')
+    return render_template('help.html', hello='Hello Main')
 
 if __name__ == '__main__':
     bootstrap()

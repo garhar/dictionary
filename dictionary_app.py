@@ -21,9 +21,7 @@ class WebApplication(webapp2.RequestHandler):
         else:
             logging.info("query: None")
 
-        test = self.request.get('radioGroup')
-        logging.info("radioGroup: " + test)
-
+        dictionary = get_dictionary()
 
         results = None
         searchOption = None
@@ -38,28 +36,47 @@ class WebApplication(webapp2.RequestHandler):
                 results = Dictionary.find_word_contains(Dictionary(), query, 'nor')
             else:
                 logging.info("WARNING: SearchOption missing!")
-                results = Dictionary.find_word_excact(Dictionary(), query, 'nor')
+                results = dictionary.find_word_excact(query, 'nor')
 
             print "results: " + str(len(results))
         else:
             print "No results"
 
-        numberOfHits = 0
+        numberOfHits = "ingen"
         if results:
             numberOfHits = len(results)
 
-        dictionary = Dictionary()
-
         template_values = {
-            'dictionary': dictionary,
             'query': query,
             'searchOption': searchOption,
             'numberOfHits': numberOfHits,
             'results': results,
             }
 
+        # path = os.path.join(os.path.dirname(__file__), 'index.html')
         path = os.path.join(os.path.dirname(__file__), 'index.html')
         self.response.out.write(template.render(path, template_values))
 
 
-app = webapp2.WSGIApplication([('/', WebApplication), ], debug=True)
+
+
+class Help(webapp2.RequestHandler):
+    def get(self):
+        path = os.path.join(os.path.dirname(__file__), 'help.html')
+        self.response.out.write(template.render(path, None))
+
+app = webapp2.WSGIApplication([('/', WebApplication),
+                               ('/help', Help),])
+
+
+def get_dictionary():
+    # TODO Fix caching of dictionary
+    # app = webapp2.get_app()
+    # dictionary = app.registry['dictionary']
+    # if not dictionary:
+    dictionary = Dictionary()
+    #     app.registry['dictionary'] = dictionary
+    #     logging.info('Initializeing dictionary...')
+    # else:
+    #     logging.info('Dictionary was already initiilized...')
+    return dictionary

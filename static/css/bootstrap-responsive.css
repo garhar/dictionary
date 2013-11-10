@@ -65,7 +65,8 @@
   display: inherit !important;
 }
 
-@media (min-width: 768px) and (max-width: 979px) {
+/* Gard: Changed from 768, 979 to 550px */
+@media (min-width: 550px) and (max-width: 550px) {
   .hidden-desktop {
     display: inherit !important;
   }
@@ -458,7 +459,8 @@
   }
 }
 
-@media (min-width: 768px) and (max-width: 979px) {
+/* Gard: Changed from 979pz to 550px */
+@media (min-width: 768px) and (max-width: 480px) {
   .row {
     margin-left: -20px;
     *zoom: 1;
@@ -799,7 +801,8 @@
   }
 }
 
-@media (max-width: 767px) {
+/* Gard: Changed from 767 to 550px */
+@media (max-width: 550px) {
   body {
     padding-right: 20px;
     padding-left: 20px;
@@ -949,7 +952,8 @@
   }
 }
 
-@media (max-width: 979px) {
+/* Gard: Changed from 979 to 550px */
+@media (max-width: 550px) {
   body {
     padding-top: 0;
   }

@@ -4,15 +4,14 @@ body {
     padding-top: 65px;
 }
 
-.well {
-    height: 260px;
-}
-
 .btn {
     font-family:"Georgia", Times, serif;
-    border-color: #72a8c0;
+    /*border-color: #1e5ac0;*/
 }
 
+.badge {
+    font-family:"Georgia", Times, serif;
+}
 
 #searchtable td { border-top: none; }
 
@@ -42,11 +41,17 @@ body {
 .field-title {
     font-size: medium;
     font-weight: bold;
-    white-space: nowrap;
+    /*white-space: nowrap;*/
 }
 
-.normal {
+.word {
     font-size: normal;
     font-weight: bold;
     white-space: pre-wrap;
+}
+
+.normal {
+    font-size: small;
+    font-weight: normal;
+    white-space: pre;
 }

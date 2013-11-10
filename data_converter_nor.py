@@ -7,7 +7,7 @@ def load_dictionary_explanations():
     dictionary_explanations = {}
     dict_file = 'data/ordliste-forklaringer.csv'
     with open(dict_file) as csvfile:
-        reader = csv.reader(csvfile, delimiter=';')
+        reader = csv.reader(csvfile, delimiter='@')
         for row in reader:
             if row:
                 explanation = {
