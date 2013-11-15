@@ -3,13 +3,17 @@ import webapp2
 import logging
 from google.appengine.ext.webapp import template
 from dictionary import Dictionary
+import datetime
+
 
 dictionary = None
+
 
 class WebApplication(webapp2.RequestHandler):
     def get(self):
 
-        logging.info("request.get:" + self.request.get('query'))
+        logging.info("Query: " + self.request.get('query'))
+        log("Query: " + self.request.get('query'))
         query = self.request.get('query')
 
         if isinstance(query, str):
@@ -18,11 +22,15 @@ class WebApplication(webapp2.RequestHandler):
             query = unicode(query)
 
         if query:
-            logging.info("query: " + query)
+            log("query: " + query)
         else:
-            logging.info("query: None")
+            log("query: None")
+
+        log("Get dictionary...")
 
         dictionary = get_dictionary()
+
+        log("Got dictionary")
 
         results = None
         searchOption = None
@@ -36,12 +44,14 @@ class WebApplication(webapp2.RequestHandler):
             elif searchOption and searchOption == "contains":
                 results = Dictionary.find_word_contains(Dictionary(), query, 'nor')
             else:
-                logging.info("WARNING: SearchOption missing!")
+                log("WARNING: SearchOption missing!")
                 results = dictionary.find_word_excact(query, 'nor')
 
             print "results: " + str(len(results))
         else:
             print "No results"
+
+        log("Search complete...")
 
         numberOfHits = "ingen"
         if results:
@@ -52,13 +62,13 @@ class WebApplication(webapp2.RequestHandler):
             'searchOption': searchOption,
             'numberOfHits': numberOfHits,
             'results': results,
-            }
+        }
 
+
+        log("Response ready...")
         # path = os.path.join(os.path.dirname(__file__), 'index.html')
         path = os.path.join(os.path.dirname(__file__), 'index.html')
         self.response.out.write(template.render(path, template_values))
-
-
 
 
 class Help(webapp2.RequestHandler):
@@ -70,14 +80,20 @@ app = webapp2.WSGIApplication([('/', WebApplication),
                                ('/help', Help),])
 
 
+def log(message):
+    now = datetime.datetime.now()
+    current_time = now.strftime("%Y-%m-%d %H:%M:%S")
+    logging.info(current_time + ": " + message)
+
+
 def get_dictionary():
     app = webapp2.get_app()
-    dictionary = app.registry.get('dictionary')
     global dictionary
+    dictionary = app.registry.get('dictionary')
     if not dictionary:
         dictionary = Dictionary()
         app.registry['dictionary'] = dictionary
-        logging.info('Initializeing dictionary...')
+        log('Initializeing dictionary...')
     else:
-        logging.info('Dictionary was already initiilized...')
+        log('Dictionary was already initiilized...')
     return dictionary

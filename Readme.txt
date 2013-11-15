@@ -1,5 +1,7 @@
 AppEngine passord for hjemmemaskin: taamwgxyjmcaazqr
 
+https://appengine.google.com/
+
 normil-ordliste.appspot.com
 
 Oppgaver:
@@ -24,6 +26,8 @@ Test i IE
 Presentere forkortelser på engelske ord også?
 
 Bedre presentasjon av valg for søk
+
+Søkeoppsjon for å søke på forkortelser
 
 Engelsk-Norsk
 
