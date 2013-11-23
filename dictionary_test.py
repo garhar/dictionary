@@ -18,7 +18,6 @@
 #         print 'result eng: ' + word['eng']
 
 from dictionary import Dictionary
-import logging
 
 if __name__ == '__main__':
     print "dictionary test..."

@@ -1,5 +1,4 @@
 import json
-from operator import itemgetter
 
 
 class Dictionary():
@@ -7,7 +6,9 @@ class Dictionary():
 
     def __init__(self):
 
-        json_dictionary_file = 'data/dictionary.json'
+        json_dictionary_file = \
+            'C:/Dev/projects/dictionary/data/dictionary.json'
+        # json_dictionary_file = 'data/dictionary.json'
         with open(json_dictionary_file) as json_file:
             self.dictionary = json.load(json_file)
 
@@ -22,7 +23,7 @@ class Dictionary():
                 result.append(wordClass)
             i += 1
         result = sorted(result, key=lambda k: (
-        k[language].lower(), k[self.oposite(language)].lower()))
+            k[language].lower(), k[self.oposite(language)].lower()))
         return result
 
     def find_word_startswith(self, search_term, language='nor'):
@@ -35,7 +36,7 @@ class Dictionary():
                 result.append(Word(self.dictionary[word]))
             i += 1
         result = sorted(result, key=lambda k: (
-        k[language].lower(), k[self.oposite(language)].lower()))
+            k[language].lower(), k[self.oposite(language)].lower()))
         return result
 
     def find_word_contains(self, search_term, language='nor'):
@@ -48,7 +49,7 @@ class Dictionary():
                 result.append(Word(self.dictionary[word]))
             i += 1
         result = sorted(result, key=lambda k: (
-        k[language].lower(), k[self.oposite(language)].lower()))
+            k[language].lower(), k[self.oposite(language)].lower()))
         return result
 
     def oposite(self, language):

@@ -1,0 +1,44 @@
+<div class="row">
+    <form id="search-form" class="well">
+        <div class="control-group">
+            <table id="searchtable" class="table">
+                <tbody>
+                <tr>
+                    <td>
+                        <div class="controls">
+                            <label class="field-title" for="query">Søk etter norske termer: </label>
+                            <div class="controls">
+                                <input id="query" name="query" type="text" value="{{ query }}">
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="controls">
+                            <label for="radioGroup" class="field-title">Søkemuligheter</label>
+                            <label class="radio ">
+                                <input type="radio" name="search-option" id="radio1" value="exactWord" checked>Eksakt term</label>
+                            <label class="radio">
+                                <input type="radio" name="search-option" id="radio2" value="startsWith">Begynner med</label>
+                            <label class="radio">
+                                <input type="radio" name="search-option" id="radio3" value="contains">Inneholder</label>
+                            <input id="search-option-arg" type="hidden" value="{{ searchOption }}">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="controls">
+                            <input type="hidden" id="search-option" name="search-option" value="{{ searchOption }}">
+                            <button class="btn btn-info btn-lg" onclick="submitForm(parent)"><i class="icon-white icon-search"></i> Søk</button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<label class="field-title">Fant {{ numberOfHits }} termer</label>
+                        </div>
+
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+</div>

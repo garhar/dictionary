@@ -32,3 +32,11 @@ Søkeoppsjon for å søke på forkortelser
 Engelsk-Norsk
 
 Favicon
+
+Mer kontrast i søkeknapp
+
+Endre tekst nederst på siden: Utviklet av Gard Harildstad 2013 -> xxx
+
+Konfigurer path til dictionary i apache
+
+Cache dictionary mellom requests?

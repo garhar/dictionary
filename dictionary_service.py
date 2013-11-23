@@ -4,7 +4,7 @@ from dictionary import Dictionary
 
 class DictionaryService:
 
-    dict = {}
+    filedict = {}
     dictionary = None
 
     def __init__(self):
@@ -12,9 +12,9 @@ class DictionaryService:
         with open(json_text_file) as json_file:
             # dictionary_dict = json.load(json_file)
             # self.dictionary = Dictionary(dictionary_dict)
-            dict = json.load(json_file)
+            filedict = json.load(json_file)
             dict2 = dict2obj(dict)
-            print "Dict: " + dict2["1"].nor
+            print "Dict: " + dict2[1].nor
 
 
     def find_nor_words(self, search_term):
