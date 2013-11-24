@@ -25,20 +25,32 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#">Normil ordliste</a>
+                        <a class="navbar-brand" href="/dictionary">Normil ordliste</a>
                     </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="#">Norsk-Engelsk</a></li>
-                            <li><a href="#about">Engelsk-Norsk</a></li>
-                            <li><a href="/help">Hjelp</a></li>
-                            <li><a href="#contact">Om</a></li>
+                            <li class="active"><a href="/dictionary">Norsk-Engelsk</a></li>
+                            <li><a href="/dictionary/eng">Engelsk-Norsk</a></li>
+                            <li><a href="/dictionary/help">Hjelp</a></li>
+                            <li><a href="/dictionary/about">Om</a></li>
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div>
             </div>
-            {% include "search.html" %}
-            {% include "result.html" %}
+            {% if not page or page == 'nor' %}
+                {% include "search.html" %}
+                {% include "result.html" %}
+            {% endif %}
+            {% if page == 'eng' %}
+                {% include "search.html" %}
+                {% include "result.html" %}
+            {% endif %}
+            {% if page == 'help' %}
+                {% include "help.html" %}
+            {% endif %}
+            {% if page == 'about' %}
+                {% include "about.html" %}
+            {% endif %}
             <div class="row-fluid">
                 <div class="span12">
                     <footer>Utviklet av Gard Harildstad 2013</footer>

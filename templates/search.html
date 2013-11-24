@@ -16,12 +16,12 @@
                         <div class="controls">
                             <label for="radioGroup" class="field-title">Søkemuligheter</label>
                             <label class="radio ">
-                                <input type="radio" name="search-option" id="radio1" value="exactWord" checked>Eksakt term</label>
+                                <input type="radio" name="option" id="radio1" value="exactWord" checked>Eksakt term</label>
                             <label class="radio">
-                                <input type="radio" name="search-option" id="radio2" value="startsWith">Begynner med</label>
+                                <input type="radio" name="option" id="radio2" value="startsWith">Begynner med</label>
                             <label class="radio">
-                                <input type="radio" name="search-option" id="radio3" value="contains">Inneholder</label>
-                            <input id="search-option-arg" type="hidden" value="{{ searchOption }}">
+                                <input type="radio" name="option" id="radio3" value="contains">Inneholder</label>
+                            <input id="option-arg" type="hidden" value="{{ option }}">
                         </div>
                     </td>
                 </tr>
@@ -29,10 +29,13 @@
                     <td>
                         <div class="controls">
                             <input type="hidden" id="search-option" name="search-option" value="{{ searchOption }}">
-                            <button class="btn btn-info btn-lg" onclick="submitForm(parent)"><i class="icon-white icon-search"></i> Søk</button>
-                            &nbsp;&nbsp;&nbsp;&nbsp;<label class="field-title">Fant {{ numberOfHits }} termer</label>
+                            <button class="btn btn-info btn-lg" onclick="submitForm(parent)"><i class="icon-white icon-search"></i>Søk</button>
+                            {% if query and message %}
+                                &nbsp;&nbsp;&nbsp;&nbsp;<label class="field-title">{{ message }}</label>
+                            {% elif not query %}
+                                &nbsp;&nbsp;&nbsp;&nbsp;<label class="field-title" style="color: red">Søkestring er påkrevet</label>
+                            {% endif %}
                         </div>
-
                     </td>
                     <td>
                     </td>

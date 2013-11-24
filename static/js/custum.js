@@ -1,15 +1,15 @@
 $( document ).ready(function() {
     var radiobtn = null;
-    if ($("#search-option-arg").val() == 'exactWord') {
-        console.log('exactWord');
+    if ($("#option-arg").val() == 'exactWord') {
+        console.log('option: exactWord');
         radiobtn = document.getElementById("radio1");
         radiobtn.checked = true;
-    } else if ($("#search-option-arg").val() == 'startsWith') {
-        console.log('startsWith');
+    } else if ($("#option-arg").val() == 'startsWith') {
+        console.log('option: startsWith');
         radiobtn = document.getElementById("radio2");
         radiobtn.checked = true;
-    } else if ($("#search-option-arg").val() == 'contains') {
-        console.log('contains');
+    } else if ($("#option-arg").val() == 'contains') {
+        console.log('option: contains');
         radiobtn = document.getElementById("radio3");
         radiobtn.checked = true;
     }

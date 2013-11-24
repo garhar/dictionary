@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from flask import Flask
 from flask import render_template, request
 
@@ -13,57 +15,79 @@ app.jinja_env.globals['settings'] = settings
 app.logger.addHandler(settings.vlh)
 logger = logging.getLogger('dictionary')
 
-@app.route("/dictionary", methods=['GET'])
-def main():
 
-    logger.error("test")
+def get_page():
+    page = request.values.get('page')
+    if not page:
+        page = ""
+    return page
+
+
+def get_query():
     query = request.values.get('query')
+    if not query:
+        query = ""
     if query and isinstance(query, str):
         query = unicode(query, 'utf-8')
     elif query:
         query = unicode(query)
+    return query
 
-    if query:
-        logger.info("query: " + query)
-    else:
-        query = ""
-        logger.info("query: None")
 
-    logger.info("Get dictionary...")
+def get_option():
+    option = request.values.get('option')
+    if not option:
+        option = ""
+    return option
+
+
+@app.route("/dictionary", methods=['GET'])
+def dict_nor():
+
+    results = None
+
+    # Get page
+    page = get_page()
+    logger.info("Request page: " + page)
+
+    # Get query
+    query = get_query()
+    logger.info("query: " + query)
 
     dictionary = Dictionary()
 
-    logger.info("Got dictionary")
+    option = get_option()
+    logging.info("option: " + option)
 
-    results = None
-    searchOption = None
-    if query:
-        searchOption = request.values.get('search-option')
-        # logging.info("search-option: " + searchOption)
-        if searchOption and searchOption == "exactWord":
-            results = Dictionary.find_word_excact(Dictionary(), query, 'nor')
-        elif searchOption and searchOption == "startsWith":
-            results = Dictionary.find_word_startswith(Dictionary(),
-                                                      query, 'nor')
-        elif searchOption and searchOption == "contains":
-            results = Dictionary.find_word_contains(Dictionary(), query, 'nor')
-        else:
-            logger.info("WARNING: SearchOption missing!")
-            results = dictionary.find_word_excact(query, 'nor')
+    if query != "" and option and option == "startsWith":
+        results = Dictionary.find_word_startswith(Dictionary(),
+                                                  query, 'nor')
+    elif query != "" and option and option == "contains":
+        results = Dictionary.find_word_contains(Dictionary(), query, 'nor')
+    elif query != "":
+        results = dictionary.find_word_excact(query, 'nor')
 
-        print "results: " + str(len(results))
-    else:
-        print "No results"
-
-    logger.info("Search complete...")
-
-    numberOfHits = "ingen"
+    message = None
     if results:
-        numberOfHits = len(results)
+        message = "Fant " + str(len(results)) + " termer"
+    else:
+        message = "Fant ingen termer"
 
-    return render_template('index.html', query=query,
-                           searchOption=searchOption,
-                           numberOfHits=numberOfHits, results=results)
+    return render_template('index.html', page=page, query=query,
+                           option=option,
+                           message=message, results=results)
+
+@app.route("/dictionary/about", methods=['GET'])
+def dict_about():
+    return render_template('index.html', page='about')
+
+@app.route("/dictionary/help", methods=['GET'])
+def dict_help():
+    return render_template('index.html', page='help')
+
+@app.route("/dictionary/eng", methods=['GET'])
+def dict_eng():
+    return render_template('index.html', page='eng')
 
 if __name__ == '__main__':
     if settings.is_debug():
