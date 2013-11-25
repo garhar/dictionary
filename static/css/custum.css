@@ -6,6 +6,7 @@ body {
 
 .btn {
     font-family:"Georgia", Times, serif;
+    font-weight: bold;
     color: #000000;
     background-color: rgba(113, 148, 175, 0.47);
 }
@@ -14,7 +15,13 @@ body {
     font-family:"Georgia", Times, serif;
 }
 
-#searchtable td { border-top: none; }
+#searchtable td {
+    border-top: none;
+}
+
+.table {
+    margin-bottom: 0px;
+}
 
 #resulttable {
     word-wrap: break-word;
@@ -22,7 +29,8 @@ body {
 
 #resulttable th {
     color:#000000;
-    background-color: rgba(113, 148, 175, 0.47);
+    background-color: lightgray;
+    /*background-color: rgba(113, 148, 175, 0.47);*/
     font-size: large;
     font-weight: bold;
 }
@@ -37,6 +45,11 @@ body {
 
 #resulttable table th:last-child{
     border-radius:0 4px 4px 0;
+}
+
+.main-title {
+    font-size: large;
+    font-weight: bold;
 }
 
 .field-title {

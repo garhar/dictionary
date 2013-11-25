@@ -1,6 +1,54 @@
-<div class="row">
-    <div id="search-form" class="well">
-    <table id="resulttable" class="table table-condensed table-bordered table-hover" style="table-layout: auto; width: 100%">
+
+    <form id="search-form">
+        <div class="control-group">
+            <table id="searchtable" class="table table-condensed">
+                <tbody>
+                <tr>
+                    <td  colspan="3" class="text-center">
+                        <label class="main-title">NORSK-ENGELSK</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" style="width: 43%">
+                        <div class="controls">
+                            <input id="query" name="query" type="text" value="{{ query }}">
+                            <input type="hidden" id="search-option" name="search-option" value="{{ searchOption }}">
+                        </div>
+                        <br>
+                        <div>
+                            <button class="btn btn-info btn-lg" onclick="submitForm(parent)"><i class="icon-white icon-search"></i>Søk</button>
+                        </div>
+                    </td>
+                    <td style="width: 6%"></td>
+                    <td align="left" style="width: 43%">
+                        <div class="controls">
+                            <normal class="radio ">
+                                <input type="radio" name="option" id="radio1" value="exactWord" checked>Eksakt term</normal>
+                            <normal class="radio">
+                                <input type="radio" name="option" id="radio2" value="startsWith">Begynner med</normal>
+                            <normal class="radio">
+                                <input type="radio" name="option" id="radio3" value="contains">Inneholder</normal>
+                            <normal class="radio">
+                                <input type="radio" name="option" id="radio3" value="contains">Forkortelser</normal>
+                            <input id="option-arg" type="hidden" value="{{ option }}">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="text-center">
+                        {% if query and message %}
+                            &nbsp;&nbsp;&nbsp;&nbsp;<label class="field-title">{{ message }}</label>
+                        {% elif not query %}
+                            &nbsp;&nbsp;&nbsp;&nbsp;<label class="field-title" style="color: red">Søkestring er påkrevet</label>
+                        {% endif %}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+    <br>
+    <table id="resulttable" class="table table-condensed table-bordered table-hover" style="table-layout: auto; ">
         <thead>
         <tr>
             <th>
@@ -72,5 +120,4 @@
         {% endif %}
         </tbody>
     </table>
-</div>
-</div>
+
