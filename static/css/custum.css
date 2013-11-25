@@ -6,6 +6,8 @@ body {
 
 .btn {
     font-family:"Georgia", Times, serif;
+    color: #000000;
+    background-color: rgba(113, 148, 175, 0.47);
 }
 
 .badge {
