@@ -7,7 +7,7 @@ class Dictionary():
     def __init__(self):
 
         json_dictionary_file = \
-            'C:/Dev/projects/dictionary/data/dictionary.json'
+            'C:/Dev/projects/dictionary/data/dictionary_prod.json'
         # json_dictionary_file = 'data/dictionary.json'
         with open(json_dictionary_file) as json_file:
             self.dictionary = json.load(json_file)
