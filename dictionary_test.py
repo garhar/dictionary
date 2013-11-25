@@ -1,22 +1,3 @@
-#coding=iso-8859-1
-# from dictionary_service import DictionaryService
-
-
-# if __name__ == '__main__':
-#     print "dictionary test..."
-#
-#     dictionary_service = DictionaryService()
-#     search_term = u'påta'
-#     print "search for: " + search_term
-#
-#     result = dictionary_service.find_nor_words(search_term)
-#     for word in result:
-#         print 'result nor: ' + word['nor']
-#
-#     result = dictionary_service.find_eng_words(search_term)
-#     for word in result:
-#         print 'result eng: ' + word['eng']
-
 from dictionary import Dictionary
 
 if __name__ == '__main__':
@@ -45,7 +26,3 @@ if __name__ == '__main__':
             print "key: " + key + ", value: " + value
 
         i += 1
-
-    # result = dictionary_service.find_eng_words(search_term)
-    # for word in result:
-    #     print 'result eng: ' + word['eng']
