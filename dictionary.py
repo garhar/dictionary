@@ -1,8 +1,16 @@
-import json
 import settings
+import json
+import logging
+
+logger = logging.getLogger('dictionary')
 
 
 class Dictionary():
+
+    CONST_SEARCH_EXACT = "EXACT"
+    CONST_SEARCH_STARTS_WITH = "STARTS_WITHT"
+    CONST_SEARCH_CONTAINS = "CONTAINS"
+
     dictionary = None
 
     def __init__(self):
@@ -13,45 +21,62 @@ class Dictionary():
         with open(json_dictionary_file) as json_file:
             self.dictionary = json.load(json_file)
 
-    def find_word_excact(self, search_term, language='nor'):
+    # Find words
+    def find_words(self, search_type=CONST_SEARCH_EXACT, search_term='', language='nor'):
         if not self.dictionary:
+            logging.error("Dictionary not initialized...")
             return None
         result = []
-        i = 0
-        for word in self.dictionary.keys():
-            if self.dictionary[word][language] == search_term:
-                wordClass = Word(self.dictionary[word])
-                result.append(wordClass)
-            i += 1
-        result = sorted(result, key=lambda k: (
+        # Loop all words in dictionary
+        for dict_word in self.dictionary.keys():
+            word = None
+            if search_type == self.CONST_SEARCH_EXACT:
+                if self.dictionary[dict_word][language] == search_term:
+                    word = Word(self.dictionary[dict_word])
+            if search_type == self.CONST_SEARCH_STARTS_WITH:
+                if self.dictionary[dict_word][language].startswith(search_term):
+                    word = Word(self.dictionary[dict_word])
+            if search_type == self.CONST_SEARCH_CONTAINS:
+                if self.dictionary[dict_word][language].find(search_term) != -1:
+                    word = Word(self.dictionary[dict_word])
+            if word:
+                result.append(word)
+        return self.sort_words(result)
+
+    # Find abbriviations
+    def find_abbriviations(self, search_type=CONST_SEARCH_EXACT, search_term='', language_abbr='nor_abbr'):
+        if not self.dictionary:
+            logging.error("Dictionary not initialized...")
+            return None
+        result = []
+        # Loop all words in dictionary
+        for dict_word in self.dictionary.keys():
+            word = None
+            # Loop all abbr for every dict_word
+            for abbr in self.dictionary[dict_word][language_abbr]:
+                abbr_ext = self.dictionary[dict_word][language_abbr]
+                if search_type == self.CONST_SEARCH_EXACT:
+                    if abbr_ext[0]['abbr'] == search_term:
+                        word = Word(self.dictionary[dict_word])
+                if search_type == self.CONST_SEARCH_STARTS_WITH:
+                    if abbr_ext[0]['abbr'].startswith(search_term):
+                        word = Word(self.dictionary[dict_word])
+                if search_type == self.CONST_SEARCH_CONTAINS:
+                    if abbr_ext[0]['abbr'].find(search_term) != -1:
+                        word = Word(self.dictionary[dict_word])
+                if word:
+                    result.append(word)
+        return self.sort_words(result)
+
+    def sort_words(self, words, language='nor'):
+        result = sorted(words, key=lambda k: (
             k[language].lower(), k[self.oposite(language)].lower()))
         return result
 
-    def find_word_startswith(self, search_term, language='nor'):
-        if not self.dictionary:
-            return None
-        result = []
-        i = 0
-        for word in self.dictionary.keys():
-            if self.dictionary[word][language].startswith(search_term):
-                result.append(Word(self.dictionary[word]))
-            i += 1
-        result = sorted(result, key=lambda k: (
-            k[language].lower(), k[self.oposite(language)].lower()))
-        return result
-
-    def find_word_contains(self, search_term, language='nor'):
-        if not self.dictionary:
-            return None
-        result = []
-        i = 0
-        for word in self.dictionary.keys():
-            if self.dictionary[word][language].find(search_term) != -1:
-                result.append(Word(self.dictionary[word]))
-            i += 1
-        result = sorted(result, key=lambda k: (
-            k[language].lower(), k[self.oposite(language)].lower()))
-        return result
+    # def sort_abbriviations(self, words, language='nor'):
+    #     result = sorted(words, key=lambda k: (
+    #         k[language].lower(), k[self.oposite(language)].lower()))
+    #     return result
 
     def oposite(self, language):
         if language == 'nor':
@@ -61,7 +86,7 @@ class Dictionary():
 
 
 class Word(dict):
-    nor_abr_expl = []
+    nor_abbr_expl = []
 
     def __init__(self, *args, **kwargs):
         dict.__init__(self, *args, **kwargs)

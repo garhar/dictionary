@@ -8,19 +8,23 @@ body {
     font-family:"Georgia", Times, serif;
     font-weight: bold;
     color: #000000;
-    background-color: rgba(113, 148, 175, 0.47);
+    /*background-color: rgba(113, 148, 175, 0.47);*/
 }
 
 .badge {
     font-family:"Georgia", Times, serif;
 }
 
-#searchtable td {
-    border-top: none;
-}
-
 .table {
     margin-bottom: 0px;
+}
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: rgb(255, 230, 192);
+}
+
+#searchtable td {
+    border-top: none;
 }
 
 #resulttable {
@@ -29,7 +33,8 @@ body {
 
 #resulttable th {
     color:#000000;
-    background-color: lightgray;
+    background-color: #ffefb7;
+    vertical-align: top;
     /*background-color: rgba(113, 148, 175, 0.47);*/
     font-size: large;
     font-weight: bold;

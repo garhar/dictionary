@@ -1,6 +1,6 @@
 <div class="row">
     <div id="search-form" class="well">
-    <table id="resulttable" class="table table-condensed table-bordered table-hover" style="table-layout: auto; width: 100%">
+    <table id="resulttable" class="table table-condensed table-bordered table-hover"  style="table-layout: auto; width: 100%">
         <thead>
         <tr>
             <th>
@@ -29,7 +29,7 @@
                         {% endif %}
                     </td>
                     <td>
-                        {% for abbr in word.nor_abr %}
+                        {% for abbr in word.nor_abbr %}
                             {#                                <button class="btn btn-xs btn-default normal" title="{{ abbr.abbr_expl.nor }}">{{ abbr.abbr }}</button>#}
                             <label class="badge normal" title="{{ abbr.abbr_expl.nor }}">{{ abbr.abbr }}</label>
                         {% endfor %}
@@ -39,9 +39,9 @@
                         <label id="eng-word-{{ loop.index }}" data-clipboard-text="" class="word" title="Klikk for å kopiere ordet til utklippstavlen">{{ word.eng }}</label>
                     </td>
                     <td>
-                        {% for abr in word.eng_abr %}
-                            {#                                <button title="{{ abr.obso }}" class="btn btn-xs btn-default normal">{{ abr.word }}&nbsp;&nbsp;({{ abr.language }})</button>#}
-                            <label title="{{ abr.obso }}" class="badge normal">{{ abr.word }}&nbsp;&nbsp;({{ abr.language }})</label>
+                        {% for abbr in word.eng_abbr %}
+                            {#                                <button title="{{ abbr.obso }}" class="btn btn-xs btn-default normal">{{ abbr.word }}&nbsp;&nbsp;({{ abbr.language }})</button>#}
+                            <label title="{{ abbr.obso }}" class="badge normal">{{ abbr.word }}&nbsp;&nbsp;({{ abbr.language }})</label>
                         {% endfor %}
                     </td>
                 </tr>

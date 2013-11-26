@@ -15,6 +15,8 @@ app.jinja_env.globals['settings'] = settings
 app.logger.addHandler(settings.vlh)
 logger = logging.getLogger('dictionary')
 
+dictionary = Dictionary()
+
 
 def get_page():
     page = request.values.get('page')
@@ -54,18 +56,15 @@ def dict_nor():
     query = get_query()
     logger.info("query: " + query)
 
-    dictionary = Dictionary()
-
     option = get_option()
     logging.info("option: " + option)
 
     if query != "" and option and option == "startsWith":
-        results = Dictionary.find_word_startswith(Dictionary(),
-                                                  query, 'nor')
+        results = dictionary.find_words(dictionary.CONST_SEARCH_STARTS_WITH, query, 'nor')
     elif query != "" and option and option == "contains":
-        results = Dictionary.find_word_contains(Dictionary(), query, 'nor')
+        results = dictionary.find_words(dictionary.CONST_SEARCH_CONTAINS, query, 'nor')
     elif query != "":
-        results = dictionary.find_word_excact(query, 'nor')
+        results = dictionary.find_words(dictionary.CONST_SEARCH_EXACT, query, 'nor')
 
     message = None
     if results:

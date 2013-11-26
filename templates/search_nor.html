@@ -4,34 +4,32 @@
             <table id="searchtable" class="table table-condensed">
                 <tbody>
                 <tr>
-                    <td  colspan="3" class="text-center">
+                    <td colspan="3" class="text-center">
                         <label class="main-title">NORSK-ENGELSK</label>
                     </td>
                 </tr>
                 <tr>
-                    <td align="right" style="width: 43%">
-                        <div class="controls">
-                            <input id="query" name="query" type="text" value="{{ query }}">
-                            <input type="hidden" id="search-option" name="search-option" value="{{ searchOption }}">
-                        </div>
-                        <br>
-                        <div>
-                            <button class="btn btn-info btn-lg" onclick="submitForm(parent)"><i class="icon-white icon-search"></i>Søk</button>
-                        </div>
+                    <td colspan="3" class="text-center">
+                        <input id="query" name="query" type="text" value="{{ query }}">
+                        <input type="hidden" id="search-option" name="search-option" value="{{ searchOption }}">
                     </td>
-                    <td style="width: 6%"></td>
-                    <td align="left" style="width: 43%">
-                        <div class="controls">
-                            <normal class="radio ">
-                                <input type="radio" name="option" id="radio1" value="exactWord" checked>Eksakt term</normal>
-                            <normal class="radio">
-                                <input type="radio" name="option" id="radio2" value="startsWith">Begynner med</normal>
-                            <normal class="radio">
-                                <input type="radio" name="option" id="radio3" value="contains">Inneholder</normal>
-                            <normal class="radio">
-                                <input type="radio" name="option" id="radio3" value="contains">Forkortelser</normal>
-                            <input id="option-arg" type="hidden" value="{{ option }}">
-                        </div>
+                </tr>
+                <tr>
+                    <td style="text-align: right">
+                        <label>Eksakt term&nbsp;</label><input type="radio" name="option" id="radio1" value="exactWord" checked>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label>Begynner med&nbsp;</label><input type="radio" name="option" id="radio2" value="startsWith">
+                    </td>
+                    <td>
+                    </td>
+                    <td style="text-align: left">
+                        <label>Inneholder&nbsp;</label><input type="radio" name="option" id="radio3" value="contains">&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label>Forkortelser&nbsp;</label><input type="radio" name="option" id="radio3" value="contains">
+                        <input id="option-arg" type="hidden" value="{{ option }}">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="text-center">
+                        <button class="btn btn-info btn-lg" onclick="submitForm(parent)"><i class="icon-white icon-search"></i>Søk</button>
                     </td>
                 </tr>
                 <tr>
@@ -48,7 +46,7 @@
         </div>
     </form>
     <br>
-    <table id="resulttable" class="table table-condensed table-bordered table-hover" style="table-layout: auto; ">
+    <table id="resulttable" class="table table-condensed  table-hover" style="table-layout: auto; ">
         <thead>
         <tr>
             <th>
@@ -77,7 +75,7 @@
                         {% endif %}
                     </td>
                     <td>
-                        {% for abbr in word.nor_abr %}
+                        {% for abbr in word.nor_abbr %}
                             {#                                <button class="btn btn-xs btn-default normal" title="{{ abbr.abbr_expl.nor }}">{{ abbr.abbr }}</button>#}
                             <label class="badge normal" title="{{ abbr.abbr_expl.nor }}">{{ abbr.abbr }}</label>
                         {% endfor %}
@@ -87,9 +85,9 @@
                         <label id="eng-word-{{ loop.index }}" data-clipboard-text="" class="word" title="Klikk for å kopiere ordet til utklippstavlen">{{ word.eng }}</label>
                     </td>
                     <td>
-                        {% for abr in word.eng_abr %}
-                            {#                                <button title="{{ abr.obso }}" class="btn btn-xs btn-default normal">{{ abr.word }}&nbsp;&nbsp;({{ abr.language }})</button>#}
-                            <label title="{{ abr.obso }}" class="badge normal">{{ abr.word }}&nbsp;&nbsp;({{ abr.language }})</label>
+                        {% for abbr in word.eng_abbr %}
+                            {#                                <button title="{{ abbr.obso }}" class="btn btn-xs btn-default normal">{{ abbr.word }}&nbsp;&nbsp;({{ abbr.language }})</button>#}
+                            <label title="{{ abbr.obso }}" class="badge normal">{{ abbr.abbr }}&nbsp;&nbsp;({{ abbr.language }})</label>
                         {% endfor %}
                     </td>
                 </tr>
