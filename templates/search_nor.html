@@ -10,20 +10,17 @@
                 </tr>
                 <tr>
                     <td colspan="3" class="text-center">
-                        <input id="query" name="query" type="text" value="{{ query }}">
+                        <input id="query" name="query" type="text" value="{{ query }}">&nbsp;&nbsp;&nbsp;
+                        <label>Termer</label>&nbsp;&nbsp;<input type="radio" name="mode" id="radioA" value="words" checked>&nbsp;&nbsp;&nbsp;
+                        <label>Forkortelser</label>&nbsp;&nbsp;<input type="radio" name="mode" id="radioB" value="abbr">
                         <input type="hidden" id="search-option" name="search-option" value="{{ searchOption }}">
                     </td>
                 </tr>
                 <tr>
-                    <td style="text-align: right">
-                        <label>Eksakt term&nbsp;</label><input type="radio" name="option" id="radio1" value="exactWord" checked>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <label>Begynner med&nbsp;</label><input type="radio" name="option" id="radio2" value="startsWith">
-                    </td>
-                    <td>
-                    </td>
-                    <td style="text-align: left">
-                        <label>Inneholder&nbsp;</label><input type="radio" name="option" id="radio3" value="contains">&nbsp;&nbsp;&nbsp;&nbsp;
-                        <label>Forkortelser&nbsp;</label><input type="radio" name="option" id="radio3" value="contains">
+                    <td colspan="3" class="text-center">
+                        <label>Eksakt term&nbsp;&nbsp;</label><input type="radio" name="option" id="radio1" value="exactWord" checked>&nbsp;&nbsp;&nbsp;
+                        <label>Begynner med&nbsp;&nbsp;</label><input type="radio" name="option" id="radio2" value="startsWith">&nbsp;&nbsp;&nbsp;
+                        <label>Inneholder&nbsp;&nbsp;</label><input type="radio" name="option" id="radio3" value="contains">
                         <input id="option-arg" type="hidden" value="{{ option }}">
                     </td>
                 </tr>
