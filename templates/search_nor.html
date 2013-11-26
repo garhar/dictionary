@@ -1,36 +1,31 @@
-
     <form id="search-form">
         <div class="control-group">
             <table id="searchtable" class="table table-condensed">
                 <tbody>
                 <tr>
                     <td colspan="3" class="text-center">
-                        <label class="main-title">NORSK-ENGELSK</label>
+                        <label class="main-title">LANDMILITÆR ORDLISTE med akronymer og forkortelser <br> NORSK-ENGELSK</label>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="3" class="text-center">
                         <input id="query" name="query" type="text" value="{{ query }}">&nbsp;&nbsp;&nbsp;
-                        <label>Termer</label>&nbsp;&nbsp;<input type="radio" name="mode" id="radioA" value="words" checked>&nbsp;&nbsp;&nbsp;
-                        <label>Forkortelser</label>&nbsp;&nbsp;<input type="radio" name="mode" id="radioB" value="abbr">
-                        <input type="hidden" id="search-option" name="search-option" value="{{ searchOption }}">
+                        <label>Termer</label>&nbsp;&nbsp;<input type="radio" name="mode" id="mode1" value="terms" checked>&nbsp;&nbsp;&nbsp;
+                        <label>Forkortelser</label>&nbsp;&nbsp;<input type="radio" name="mode" id="mode2" value="abbr">
+                        <input id="mode-arg" type="hidden" value="{{ mode }}">
                     </td>
                 </tr>
                 <tr>
                     <td colspan="3" class="text-center">
-                        <label>Eksakt term&nbsp;&nbsp;</label><input type="radio" name="option" id="radio1" value="exactWord" checked>&nbsp;&nbsp;&nbsp;
-                        <label>Begynner med&nbsp;&nbsp;</label><input type="radio" name="option" id="radio2" value="startsWith">&nbsp;&nbsp;&nbsp;
-                        <label>Inneholder&nbsp;&nbsp;</label><input type="radio" name="option" id="radio3" value="contains">
+                        <label>Eksakt term&nbsp;&nbsp;</label><input type="radio" name="option" id="option1" value="EXACT" checked>&nbsp;&nbsp;&nbsp;
+                        <label>Begynner med&nbsp;&nbsp;</label><input type="radio" name="option" id="option2" value="STARTS_WITH">&nbsp;&nbsp;&nbsp;
+                        <label>Inneholder&nbsp;&nbsp;</label><input type="radio" name="option" id="option3" value="CONTAINS">
                         <input id="option-arg" type="hidden" value="{{ option }}">
                     </td>
                 </tr>
                 <tr>
                     <td colspan="3" class="text-center">
-                        <button class="btn btn-info btn-lg" onclick="submitForm(parent)"><i class="icon-white icon-search"></i>Søk</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="3" class="text-center">
+                        <button class="btn btn-info btn-lg" onclick="submitForm(parent)"><i class="icon-white icon-search"></i>Søk</button>&nbsp;&nbsp;&nbsp;
                         {% if query and message %}
                             &nbsp;&nbsp;&nbsp;&nbsp;<label class="field-title">{{ message }}</label>
                         {% elif not query %}

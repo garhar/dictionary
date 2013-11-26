@@ -8,7 +8,7 @@ logger = logging.getLogger('dictionary')
 class Dictionary():
 
     CONST_SEARCH_EXACT = "EXACT"
-    CONST_SEARCH_STARTS_WITH = "STARTS_WITHT"
+    CONST_SEARCH_STARTS_WITH = "STARTS_WITH"
     CONST_SEARCH_CONTAINS = "CONTAINS"
 
     dictionary = None

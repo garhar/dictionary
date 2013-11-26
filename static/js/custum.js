@@ -1,17 +1,29 @@
 $( document ).ready(function() {
-    var radiobtn = null;
-    if ($("#option-arg").val() == 'exactWord') {
+
+    var radioMode = null;
+    if ($("#mode-arg").val() == 'terms') {
+        console.log('mode: terms');
+        radioMode = document.getElementById("mode1");
+        radioMode.checked = true;
+    } else if ($("#mode-arg").val() == 'abbr') {
+        console.log('mode: abbr');
+        radioMode = document.getElementById("mode2");
+        radioMode.checked = true;
+    }
+
+    var radioOption = null;
+    if ($("#option-arg").val() == 'EXACT') {
         console.log('option: exactWord');
-        radiobtn = document.getElementById("radio1");
-        radiobtn.checked = true;
-    } else if ($("#option-arg").val() == 'startsWith') {
+        radioOption = document.getElementById("option1");
+        radioOption.checked = true;
+    } else if ($("#option-arg").val() == 'STARTS_WITH') {
         console.log('option: startsWith');
-        radiobtn = document.getElementById("radio2");
-        radiobtn.checked = true;
-    } else if ($("#option-arg").val() == 'contains') {
+        radioOption = document.getElementById("option2");
+        radioOption.checked = true;
+    } else if ($("#option-arg").val() == 'CONTAINS') {
         console.log('option: contains');
-        radiobtn = document.getElementById("radio3");
-        radiobtn.checked = true;
+        radioOption = document.getElementById("option3");
+        radioOption.checked = true;
     }
     $("tr:odd").addClass("odd");
     $("#query").focus();

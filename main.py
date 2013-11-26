@@ -36,6 +36,13 @@ def get_query():
     return query
 
 
+def get_mode():
+    mode = request.values.get('mode')
+    if not mode:
+        mode = ""
+    return mode
+
+
 def get_option():
     option = request.values.get('option')
     if not option:
@@ -56,15 +63,17 @@ def dict_nor():
     query = get_query()
     logger.info("query: " + query)
 
-    option = get_option()
-    logging.info("option: " + option)
+    # Get mode
+    mode = get_mode()
+    logger.info("mode: " + mode)
 
-    if query != "" and option and option == "startsWith":
-        results = dictionary.find_words(dictionary.CONST_SEARCH_STARTS_WITH, query, 'nor')
-    elif query != "" and option and option == "contains":
-        results = dictionary.find_words(dictionary.CONST_SEARCH_CONTAINS, query, 'nor')
-    elif query != "":
-        results = dictionary.find_words(dictionary.CONST_SEARCH_EXACT, query, 'nor')
+    option = get_option()
+    logger.info("option: " + option)
+
+    if query != "" and mode and mode == "abbr":
+        results = dictionary.find_abbriviations(option, query, 'nor_abbr')
+    else:
+        results = dictionary.find_words(option, query, 'nor')
 
     message = None
     if results:
@@ -73,7 +82,7 @@ def dict_nor():
         message = "Fant ingen termer"
 
     return render_template('index.html', page=page, query=query,
-                           option=option,
+                           mode=mode, option=option,
                            message=message, results=results)
 
 @app.route("/dictionary/about", methods=['GET'])
