@@ -15,9 +15,9 @@ class Dictionary():
 
     def __init__(self):
         if settings.is_production():
-            json_dictionary_file = 'C:/Dev/projects/dictionary_prod/data/dictionary.json'
+            json_dictionary_file = 'C:/Dev/projects/dictionaryProd/data/dictionary.json'
         else:
-            json_dictionary_file = 'C:/Dev/projects/dictionary/data/dictionary.json'
+            json_dictionary_file = 'C:/Dev/projects/dictionaryDev/data/dictionary.json'
         with open(json_dictionary_file) as json_file:
             self.dictionary = json.load(json_file)
 
