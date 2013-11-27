@@ -16,7 +16,7 @@ body {
 }
 
 .table {
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
@@ -74,4 +74,6 @@ body {
     white-space: pre;
 }
 
-.search-query { width: 300px }
+.search-query {
+    width: 300px
+}

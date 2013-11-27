@@ -70,13 +70,18 @@ def dict_nor():
     option = get_option()
     logger.info("option: " + option)
 
+    logger.info("Start search...")
     if query != "" and mode and mode == "abbr":
         results = dictionary.find_abbriviations(option, query, 'nor_abbr')
     else:
         results = dictionary.find_words(option, query, 'nor')
 
+    logger.info("End search...")
+
     message = None
-    if results:
+    if len(results) >= 200:
+        message = "Listen er begrenset til 200 termer"
+    elif results:
         message = "Fant " + str(len(results)) + " termer"
     else:
         message = "Fant ingen termer"

@@ -28,6 +28,7 @@ class Dictionary():
             return None
         result = []
         # Loop all words in dictionary
+        counter = 0
         for dict_word in self.dictionary.keys():
             word = None
             if search_type == self.CONST_SEARCH_EXACT:
@@ -40,7 +41,10 @@ class Dictionary():
                 if self.dictionary[dict_word][language].find(search_term) != -1:
                     word = Word(self.dictionary[dict_word])
             if word:
+                counter += +1
                 result.append(word)
+            if counter >= 200:
+                break
         return self.sort_words(result)
 
     # Find abbriviations
@@ -50,6 +54,7 @@ class Dictionary():
             return None
         result = []
         # Loop all words in dictionary
+        counter = 0
         for dict_word in self.dictionary.keys():
             word = None
             # Loop all abbr for every dict_word
@@ -65,7 +70,10 @@ class Dictionary():
                     if abbr_ext[0]['abbr'].find(search_term) != -1:
                         word = Word(self.dictionary[dict_word])
                 if word:
+                    counter += +1
                     result.append(word)
+            if counter >= 200:
+                break
         return self.sort_words(result)
 
     def sort_words(self, words, language='nor'):
