@@ -4,22 +4,54 @@
                 <tbody>
                 <tr>
                     <td colspan="3" class="text-center">
-                        <label class="main-title">LANDMILITÆR ORDLISTE med akronymer og forkortelser <br> NORSK-ENGELSK</label>
+                        <label class="main-title">LANDMILITÆR ORDLISTE med akronymer og forkortelser</label>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="3" class="text-center">
-                        <input id="query" name="query" type="text" value="{{ query }}">&nbsp;&nbsp;&nbsp;
-                        <label>Termer</label>&nbsp;&nbsp;<input type="radio" name="mode" id="mode1" value="terms" checked>&nbsp;&nbsp;&nbsp;
-                        <label>Forkortelser</label>&nbsp;&nbsp;<input type="radio" name="mode" id="mode2" value="abbr">
+                        <label class="main-title">NORSK-ENGELSK</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="text-center">
+                        <table align="center">
+                            <tr>
+                                <td>
+                                    <label>Termer</label>&nbsp;<input type="radio" name="mode" id="mode1" value="terms" checked>
+                                </td>
+                                <td>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </td>
+                                <td>
+                                    <label>Forkortelser</label>&nbsp;<input type="radio" name="mode" id="mode2" value="abbr">
+                                </td>
+                            </tr>
+                        </table>
                         <input id="mode-arg" type="hidden" value="{{ mode }}">
                     </td>
                 </tr>
                 <tr>
+                    <td>
+                        <table align="center">
+                            <tr>
+                                <td>
+                                    <input id="query" name="query" type="text" class="search-query" value="{{ query }}">
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
                     <td colspan="3" class="text-center">
-                        <label>Eksakt term&nbsp;&nbsp;</label><input type="radio" name="option" id="option1" value="EXACT" checked>&nbsp;&nbsp;&nbsp;
-                        <label>Begynner med&nbsp;&nbsp;</label><input type="radio" name="option" id="option2" value="STARTS_WITH">&nbsp;&nbsp;&nbsp;
-                        <label>Inneholder&nbsp;&nbsp;</label><input type="radio" name="option" id="option3" value="CONTAINS">
+                        <table align="center">
+                            <tr>
+                                <td><label>Eksakt term&nbsp;</label><input type="radio" name="option" id="option1" value="EXACT" checked></td>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                <td><label>Begynner med&nbsp;</label><input type="radio" name="option" id="option2" value="STARTS_WITH"></td>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                <td><label>Inneholder&nbsp;</label><input type="radio" name="option" id="option3" value="CONTAINS"></td>
+                            </tr>
+                        </table>
                         <input id="option-arg" type="hidden" value="{{ option }}">
                     </td>
                 </tr>

@@ -73,3 +73,5 @@ body {
     font-weight: normal;
     white-space: pre;
 }
+
+.search-query { width: 300px }
