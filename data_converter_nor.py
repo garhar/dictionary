@@ -5,7 +5,7 @@ import json
 
 def load_dictionary_explanations():
     dictionary_explanations = {}
-    dict_file = 'data/ordliste-forklaringer.csv'
+    dict_file = 'data/nor-ordliste-forklaringer.csv'
     with open(dict_file) as csvfile:
         reader = csv.reader(csvfile, delimiter='@')
         for row in reader:
