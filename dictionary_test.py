@@ -53,38 +53,38 @@ if __name__ == '__main__':
     # Search for "exact" abbrievations nor
     # search_term = u'strat'
     # print "search for: " + search_term
-    # result = dictionary.find_abbriviations(dictionary.CONST_SEARCH_EXACT, search_term, 'nor_abbr')
+    # result = dictionary.find_abbriviations(dictionary.CONST_SEARCH_EXACT, search_term, 'nor_usages')
 
     # Search for "exact" abbrievations eng
     # search_term = u'etterf'
     # print "search for: " + search_term
-    # result = dictionary.find_abbriviations(dictionary.CONST_SEARCH_EXACT, search_term, 'eng_abbr')
+    # result = dictionary.find_abbriviations(dictionary.CONST_SEARCH_EXACT, search_term, 'abbr')
 
     # Starts with
 
     # Search for "starts with" abbrievations nor
     # search_term = u'strat'
     # print "search for: " + search_term
-    # result = dictionary.find_abbriviations(dictionary.CONST_SEARCH_STARTS_WITH, search_term, 'nor_abbr')
+    # result = dictionary.find_abbriviations(dictionary.CONST_SEARCH_STARTS_WITH, search_term, 'nor_usages')
 
     # Search for "starts with" abbrievations eng
     # search_term = u'etter'
     # search_term = u'UM'
     # print "search for: " + search_term
-    # result = dictionary.find_abbriviations(dictionary.CONST_SEARCH_STARTS_WITH, search_term, 'eng_abbr')
+    # result = dictionary.find_abbriviations(dictionary.CONST_SEARCH_STARTS_WITH, search_term, 'abbr')
 
     # Contains
 
     # Search for "starts with" abbrievations nor
     # search_term = u'trat'
     # print "search for: " + search_term
-    # result = dictionary.find_abbriviations(dictionary.CONST_SEARCH_CONTAINS, search_term, 'nor_abbr')
+    # result = dictionary.find_abbriviations(dictionary.CONST_SEARCH_CONTAINS, search_term, 'nor_usages')
 
     # Search for "starts with" abbrievations eng
     # search_term = u'tterf'
     search_term = u'QMS'
     print "search for: " + search_term
-    result = dictionary.find_abbriviations(dictionary.CONST_SEARCH_CONTAINS, search_term, 'eng_abbr')
+    result = dictionary.find_abbriviations(dictionary.CONST_SEARCH_CONTAINS, search_term)
 
 
 
@@ -94,23 +94,23 @@ if __name__ == '__main__':
     for word in result:
         print "-----"
         print 'result: ' + result[i].nor + ", " + result[i].eng
-        print "nor abbr"
-        for abbr in result[i].nor_abbr:
-            print("Finding abbr for: " + abbr['abbr'])
+        print "nor usage"
+        for usage in result[i].nor_usages:
+            print("Finding usage for: " + usage['abbr'])
 
         print "eng abbr"
-        for abbr in result[i].eng_abbr:
-            print("Finding abbr for: " + abbr['abbr'])
+        for usage in result[i].abbr:
+            print("Finding abbr for: " + usage['abbr'])
 
 
 
-        # for abbr in result[i].eng_abbr:
+        # for abbr in result[i].abbr:
         #     print abbr
         # print "-----"
-        # for abbr in result[i].eng_abbr:
-        #     print result[i].eng_abbr[abbr]
+        # for abbr in result[i].abbr:
+        #     print result[i].abbr[abbr]
 
-        # for key, value in result[i].nor_abbr_test.items():
+        # for key, value in result[i].nor_usages_test.items():
         #     print "key: " + key + ", value: " + value
 
         i += 1

@@ -33,6 +33,8 @@ Engelsk-Norsk
 
 Favicon
 
+Søk på store/små bokstaver
+
 Mer kontrast i søkeknapp
 
 Endre tekst nederst på siden: Utviklet av Gard Harildstad 2013 -> xxx

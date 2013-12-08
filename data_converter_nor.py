@@ -52,8 +52,8 @@ def load_dictionary(dict_expl):
             # Row 1
             nor = ""
             nor_expl = ""
-            nor_abbr = []
-            nor_abbr_dict = {}
+            nor_usages = []
+            nor_usages_dict = {}
             if field1:
                 field1split = field1.split(" / ")
                 if len(field1split) > 0 and field1split[0]:
@@ -63,12 +63,12 @@ def load_dictionary(dict_expl):
                     field1split2 = temp_nor_word_exp.split("  ")
                     nor_word_exp_split_char = ""
                     for word2 in field1split2:
-                        nor_abbr_dict = {}
+                        nor_usages_dict = {}
                         if word2 and is_word_in_dictionary_expl(dict_expl,
                                                                      word2.strip()):
-                            nor_abbr_dict['abbr'] = word2.strip()
-                            nor_abbr_dict['abbr_expl'] = get_word_in_dictionary_expl(dict_expl, word2.strip())
-                            nor_abbr.append(nor_abbr_dict)
+                            nor_usages_dict['abbr'] = word2.strip()
+                            nor_usages_dict['abbr_expl'] = get_word_in_dictionary_expl(dict_expl, word2.strip())
+                            nor_usages.append(nor_usages_dict)
                         elif word2:
                             nor_expl = nor_expl + nor_word_exp_split_char + word2.strip()
                             nor_word_exp_split_char = " "
@@ -82,41 +82,41 @@ def load_dictionary(dict_expl):
             # Row 3 always empty
 
             # Row 4
-            eng_abbr_dict = {}
-            eng_abbr = []
+            abbr_dict = {}
+            abbr = []
             if field4:
                 field4split = field4.split(" ; ")
                 for word4 in field4split:
 
                     if word4.find("obso") == -1:
-                        eng_abbr_dict['obso'] = ''
+                        abbr_dict['obso'] = ''
                     else:
-                        eng_abbr_dict['obso'] = 'obsolete'
+                        abbr_dict['obso'] = 'obsolete'
 
                     if word4.find("(NO)") != -1:
                         # Needed?
-                        eng_abbr_dict['language'] = 'NO'
-                        eng_abbr_dict['abbr'] = word4.replace("(NO)", "").replace("obso", "").strip()
+                        abbr_dict['language'] = 'NO'
+                        abbr_dict['abbr'] = word4.replace("(NO)", "").replace("obso", "").strip()
                     elif word4.find("(US)") != -1:
-                        eng_abbr_dict['language'] = 'US'
-                        eng_abbr_dict['abbr'] = word4.replace("(US)", "").replace("obso", "").strip()
+                        abbr_dict['language'] = 'US'
+                        abbr_dict['abbr'] = word4.replace("(US)", "").replace("obso", "").strip()
                     elif word4.find("(UK)") != -1:
-                        eng_abbr_dict['language'] = 'UK'
-                        eng_abbr_dict['abbr'] = word4.replace("(UK)", "").replace("obso", "").strip()
+                        abbr_dict['language'] = 'UK'
+                        abbr_dict['abbr'] = word4.replace("(UK)", "").replace("obso", "").strip()
                     elif word4.find("(NATO)") != -1:
-                        eng_abbr_dict['language'] = 'NATO'
-                        eng_abbr_dict['abbr'] = word4.replace("(NATO)", "").replace("obso", "").strip()
+                        abbr_dict['language'] = 'NATO'
+                        abbr_dict['abbr'] = word4.replace("(NATO)", "").replace("obso", "").strip()
                     else:
-                        eng_abbr_dict['language'] = 'US, UK, NATO'
-                        eng_abbr_dict['abbr'] = word4.replace("obso", "").strip()
-                    eng_abbr.append(eng_abbr_dict)
+                        abbr_dict['language'] = 'US, UK, NATO'
+                        abbr_dict['abbr'] = word4.replace("obso", "").strip()
+                    abbr.append(abbr_dict)
 
             word = {
                 'nor': nor,
                 'nor_expl': nor_expl,
-                'nor_abbr': nor_abbr,
+                'nor_usages': nor_usages,
                 'eng': eng,
-                'eng_abbr': eng_abbr
+                'abbr': abbr
             }
             dictionary[counter] = word
     return dictionary

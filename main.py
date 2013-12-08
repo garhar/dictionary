@@ -72,7 +72,7 @@ def dict_nor():
 
     logger.info("Start search...")
     if query != "" and mode and mode == "abbr":
-        results = dictionary.find_abbriviations(option, query, 'nor_abbr')
+        results = dictionary.find_abbriviations(option, query)
     else:
         results = dictionary.find_words(option, query, 'nor')
 

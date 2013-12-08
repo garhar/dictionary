@@ -48,7 +48,7 @@ class Dictionary():
         return self.sort_words(result)
 
     # Find abbriviations
-    def find_abbriviations(self, search_type=CONST_SEARCH_EXACT, search_term='', language_abbr='nor_abbr'):
+    def find_abbriviations(self, search_type=CONST_SEARCH_EXACT, search_term=''):
         if not self.dictionary:
             logging.error("Dictionary not initialized...")
             return None
@@ -58,16 +58,16 @@ class Dictionary():
         for dict_word in self.dictionary.keys():
             word = None
             # Loop all abbr for every dict_word
-            for abbr in self.dictionary[dict_word][language_abbr]:
-                abbr_ext = self.dictionary[dict_word][language_abbr]
+            for abbr in self.dictionary[dict_word]['abbr']:
+                # abbr_ext = self.dictionary[dict_word]['abbr']
                 if search_type == self.CONST_SEARCH_EXACT:
-                    if abbr_ext[0]['abbr'] == search_term:
+                    if abbr['abbr'] == search_term:
                         word = Word(self.dictionary[dict_word])
                 if search_type == self.CONST_SEARCH_STARTS_WITH:
-                    if abbr_ext[0]['abbr'].startswith(search_term):
+                    if abbr['abbr'].startswith(search_term):
                         word = Word(self.dictionary[dict_word])
                 if search_type == self.CONST_SEARCH_CONTAINS:
-                    if abbr_ext[0]['abbr'].find(search_term) != -1:
+                    if abbr['abbr'].find(search_term) != -1:
                         word = Word(self.dictionary[dict_word])
                 if word:
                     counter += +1
@@ -94,7 +94,6 @@ class Dictionary():
 
 
 class Word(dict):
-    nor_abbr_expl = []
 
     def __init__(self, *args, **kwargs):
         dict.__init__(self, *args, **kwargs)

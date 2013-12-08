@@ -98,9 +98,9 @@
                         {% endif %}
                     </td>
                     <td>
-                        {% for abbr in word.nor_abbr %}
+                        {% for usage in word.nor_usages %}
                             {#                                <button class="btn btn-xs btn-default normal" title="{{ abbr.abbr_expl.nor }}">{{ abbr.abbr }}</button>#}
-                            <label class="badge normal" title="{{ abbr.abbr_expl.nor }}">{{ abbr.abbr }}</label>
+                            <label class="badge normal" title="{{ usage.abbr_expl.nor }}">{{ usage.abbr }}</label>
                         {% endfor %}
                     </td>
                     <td>
@@ -108,7 +108,7 @@
                         <label id="eng-word-{{ loop.index }}" data-clipboard-text="" class="word" title="Klikk for å kopiere ordet til utklippstavlen">{{ word.eng }}</label>
                     </td>
                     <td>
-                        {% for abbr in word.eng_abbr %}
+                        {% for abbr in word.abbr %}
                             {#                                <button title="{{ abbr.obso }}" class="btn btn-xs btn-default normal">{{ abbr.word }}&nbsp;&nbsp;({{ abbr.language }})</button>#}
                             <label title="{{ abbr.obso }}" class="badge normal">{{ abbr.abbr }}&nbsp;&nbsp;({{ abbr.language }})</label>
                         {% endfor %}
