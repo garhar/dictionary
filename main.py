@@ -81,6 +81,8 @@ def dict_nor():
     message = None
     if len(results) >= 200:
         message = "Listen er begrenset til 200 termer"
+    elif len(results) == 1:
+        message = "Fant " + str(len(results)) + " term"
     elif results:
         message = "Fant " + str(len(results)) + " termer"
     else:

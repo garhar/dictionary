@@ -6,39 +6,37 @@ normil-ordliste.appspot.com
 
 Oppgaver:
 
-OK - Sortering av resultatsett
+Lydskrift eks: sysaker
 
-OK - Forkortelser, få med tekst fra forkortelseslisten
+1. Programmet tar ikke i betraktning akcenter.
+F.eks  'grenadèr'  'mortèr' .......
 
-OK - Klippe/velge ut ord enkelt
+2. Tager ikke i betraktning '+'
+F.eks. 'kompani+, 'kp+'
 
-Layout
-- ord som bryter linje får andre ord midtstilt
-- søkeboks og hjelpeboks blir ikke riktig alignet
+1. Forsøk å slå opp: 'stridskjøretøysforskning og utvikling' ...?
+2. Slå opp: 'stridsvurdering' ....?
+I begge tilfælde flytter kolonnerne seg og i 2. bør alle ord etter 'stridvurdering' ned i  linje 2.
+
+Visse forkortelser kommer feil ut i høyreste kolonne.
+F.eks.: 'Det kongelige artilleri' gir kun de norske forkortelser med ikke  den engelske, som angitt i Excel-filen:  'RA'.
+Dette spørsmål gjelder andre, som f. eks. oppslag på 'major', hvor kun de norske forkortelse angis..
+
+Forkortelser fungerer nogenlunde ... men feks -'kp' eller 'ko' gir ingen fangst ----?
 
 Noen forkortelser blir ikke med som forkortelser
 sjekk sammenligning. Eks. "mål" og "forsvar"
 
 søkeord skal markeres etter utført søk
 
-Test i IE
-
-Presentere forkortelser på engelske ord også?
-
-Bedre presentasjon av valg for søk
-
-Søkeoppsjon for å søke på forkortelser
-
 Engelsk-Norsk
 
-Favicon
+OK - Sortering av resultatsett
 
-Søk på store/små bokstaver
+OK - Forkortelser, få med tekst fra forkortelseslisten
 
-Mer kontrast i søkeknapp
+OK - Klippe/velge ut ord enkelt
 
-Endre tekst nederst på siden: Utviklet av Gard Harildstad 2013 -> xxx
+OK Kan du 'omstille ordet 'termer' til 'term' ved søk, som kun gir et ord i søket?
 
-Konfigurer path til dictionary i apache
-
-Cache dictionary mellom requests?
+OK - Kopiere ord med å klikke på de fungerer ikke

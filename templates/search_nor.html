@@ -4,17 +4,12 @@
                 <tbody>
                 <tr>
                     <td colspan="3" class="text-center">
-                        <label class="main-title">LANDMILITÆR ORDLISTE</label>
+                        <label class="main-title">LANDMILITÆR ORDLISTE (Norsk - Engelsk)</label>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="3" class="text-center">
-                        <label class="main-title">med akronymer og forkortelser</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="3" class="text-center">
-                        <label class="main-title">NORSK-ENGELSK</label>
+                        <label class="title">med akronymer og forkortelser</label>
                     </td>
                 </tr>
                 <tr>
@@ -69,7 +64,7 @@
         </div>
     </form>
     <br>
-    <table id="resulttable" class="table table-condensed  table-hover" style="table-layout: auto; ">
+    <table id="resulttable" class="table table-condensed  table-bordered table-hover" style="table-layout: auto; ">
         <thead>
         <tr>
             <th>
@@ -114,16 +109,16 @@
                         {% endfor %}
                     </td>
                 </tr>
-                <script>
+                <script type="text/javascript">
                     var clip{{ loop.index }} = new ZeroClipboard( document.getElementById("nor-word-{{ loop.index }}"), {
                         moviePath: "/static/flash/ZeroClipboard.swf"
                     } );
-                    document.getElementById("nor-word-{{ loop.index }}").setAttribute('data-clipboard-text', document.getElementById('nor-word-{{ loop.index }}').innerText);
+                    document.getElementById("nor-word-{{ loop.index }}").setAttribute('data-clipboard-text', document.getElementById('nor-word-{{ loop.index }}').textContent);
 
                     var clip{{ loop.index }} = new ZeroClipboard( document.getElementById("eng-word-{{ loop.index }}"), {
                         moviePath: "/static/flash/ZeroClipboard.swf"
                     } );
-                    document.getElementById("eng-word-{{ loop.index }}").setAttribute('data-clipboard-text', document.getElementById('eng-word-{{ loop.index }}').innerText);
+                    document.getElementById("eng-word-{{ loop.index }}").setAttribute('data-clipboard-text', document.getElementById('eng-word-{{ loop.index }}').textContent);
                     clip{{ loop.index }}.on( "load", function(client) {
                         client.on( "complete", function(client, args) {
                             alert("Ordet '" + args.text + "' ble kopiert til utklippstavlen");

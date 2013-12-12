@@ -61,13 +61,13 @@ class Dictionary():
             for abbr in self.dictionary[dict_word]['abbr']:
                 # abbr_ext = self.dictionary[dict_word]['abbr']
                 if search_type == self.CONST_SEARCH_EXACT:
-                    if abbr['abbr'] == search_term:
+                    if abbr['abbr'].upper() == search_term.upper():
                         word = Word(self.dictionary[dict_word])
                 if search_type == self.CONST_SEARCH_STARTS_WITH:
-                    if abbr['abbr'].startswith(search_term):
+                    if abbr['abbr'].upper().startswith(search_term.upper()):
                         word = Word(self.dictionary[dict_word])
                 if search_type == self.CONST_SEARCH_CONTAINS:
-                    if abbr['abbr'].find(search_term) != -1:
+                    if abbr['abbr'].upper().find(search_term.upper()) != -1:
                         word = Word(self.dictionary[dict_word])
                 if word:
                     counter += +1
