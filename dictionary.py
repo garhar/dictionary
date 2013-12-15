@@ -32,13 +32,13 @@ class Dictionary():
         for dict_word in self.dictionary.keys():
             word = None
             if search_type == self.CONST_SEARCH_EXACT:
-                if self.dictionary[dict_word][language] == search_term:
+                if self.dictionary[dict_word][language].upper() == search_term.upper():
                     word = Word(self.dictionary[dict_word])
             if search_type == self.CONST_SEARCH_STARTS_WITH:
-                if self.dictionary[dict_word][language].startswith(search_term):
+                if self.dictionary[dict_word][language].upper().startswith(search_term.upper()):
                     word = Word(self.dictionary[dict_word])
             if search_type == self.CONST_SEARCH_CONTAINS:
-                if self.dictionary[dict_word][language].find(search_term) != -1:
+                if self.dictionary[dict_word][language].upper().find(search_term.upper()) != -1:
                     word = Word(self.dictionary[dict_word])
             if word:
                 counter += +1

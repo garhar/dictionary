@@ -4,16 +4,6 @@
                 <tbody>
                 <tr>
                     <td colspan="3" class="text-center">
-                        <label class="main-title">LANDMILITÆR ORDLISTE (Norsk - Engelsk)</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="3" class="text-center">
-                        <label class="title">med akronymer og forkortelser</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="3" class="text-center">
                         <table align="center">
                             <tr>
                                 <td><label>Termer</label>&nbsp;<input type="radio" name="mode" id="mode1" value="terms" checked></td>
@@ -86,7 +76,6 @@
             {% for word in results %}
                 <tr>
                     <td>
-                        {#                            <button id="nor-word-{{ loop.index }}" data-clipboard-text="" class="btn btn-xs btn-default word"  title="Klikk for å kopiere ordet til utklippstavlen">{{ word.nor }}</button>#}
                         <label id="nor-word-{{ loop.index }}" data-clipboard-text="" class="word"  title="Klikk for å kopiere ordet til utklippstavlen">{{ word.nor }}</label>
                         {% if word.nor_expl %}
                             <br><label class="normal">{{ word.nor_expl }}</label>
@@ -94,17 +83,17 @@
                     </td>
                     <td>
                         {% for usage in word.nor_usages %}
-                            {#                                <button class="btn btn-xs btn-default normal" title="{{ abbr.abbr_expl.nor }}">{{ abbr.abbr }}</button>#}
                             <label class="badge normal" title="{{ usage.abbr_expl.nor }}">{{ usage.abbr }}</label>
                         {% endfor %}
                     </td>
                     <td>
-                        {#                            <button id="eng-word-{{ loop.index }}" data-clipboard-text="" class="btn btn-xs btn-default word" title="Klikk for å kopiere ordet til utklippstavlen">{{ word.eng }}</button>#}
                         <label id="eng-word-{{ loop.index }}" data-clipboard-text="" class="word" title="Klikk for å kopiere ordet til utklippstavlen">{{ word.eng }}</label>
+                        {% if word.eng_pron %}
+                            <br><label class="normal">{{ word.eng_pron }}</label>
+                        {% endif %}
                     </td>
                     <td>
                         {% for abbr in word.abbr %}
-                            {#                                <button title="{{ abbr.obso }}" class="btn btn-xs btn-default normal">{{ abbr.word }}&nbsp;&nbsp;({{ abbr.language }})</button>#}
                             <label title="{{ abbr.obso }}" class="badge normal">{{ abbr.abbr }}&nbsp;&nbsp;({{ abbr.language }})</label>
                         {% endfor %}
                     </td>
@@ -114,7 +103,6 @@
                         moviePath: "/static/flash/ZeroClipboard.swf"
                     } );
                     document.getElementById("nor-word-{{ loop.index }}").setAttribute('data-clipboard-text', document.getElementById('nor-word-{{ loop.index }}').textContent);
-
                     var clip{{ loop.index }} = new ZeroClipboard( document.getElementById("eng-word-{{ loop.index }}"), {
                         moviePath: "/static/flash/ZeroClipboard.swf"
                     } );

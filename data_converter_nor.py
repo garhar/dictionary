@@ -76,8 +76,14 @@ def load_dictionary(dict_expl):
 
             # Row 2
             eng = ""
+            eng_pron = ""
             if field2:
-                eng = field2.strip()
+                field2split = field2.split(" utt ")
+                if len(field2split) > 0 and field2split[0]:
+                    eng = field2split[0].strip()
+                if len(field2split) > 1 and field2split[1]:
+                    print eng + " : " + field2split[1].strip()
+                    eng_pron = field2split[1].strip()
 
             # Row 3 always empty
 
@@ -116,6 +122,7 @@ def load_dictionary(dict_expl):
                 'nor_expl': nor_expl,
                 'nor_usages': nor_usages,
                 'eng': eng,
+                'eng_pron': eng_pron,
                 'abbr': abbr
             }
             dictionary[counter] = word
