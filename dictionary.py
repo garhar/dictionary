@@ -18,6 +18,7 @@ class Dictionary():
             json_dictionary_file = 'C:/Dev/projects/dictionaryProd/data/dictionary.json'
         else:
             json_dictionary_file = 'C:/Dev/projects/dictionaryDev/data/dictionary.json'
+        logging.info("Dictionary initialized with: " + json_dictionary_file)
         with open(json_dictionary_file) as json_file:
             self.dictionary = json.load(json_file)
 

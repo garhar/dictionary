@@ -73,7 +73,6 @@ def load_dictionary(dict_expl):
                             nor_expl = nor_expl + nor_word_exp_split_char + word2.strip()
                             nor_word_exp_split_char = " "
 
-
             # Row 2
             eng = ""
             eng_pron = ""
@@ -88,12 +87,11 @@ def load_dictionary(dict_expl):
             # Row 3 always empty
 
             # Row 4
-            abbr_dict = {}
             abbr = []
             if field4:
                 field4split = field4.split(" ; ")
                 for word4 in field4split:
-
+                    abbr_dict = {}
                     if word4.find("obso") == -1:
                         abbr_dict['obso'] = ''
                     else:
