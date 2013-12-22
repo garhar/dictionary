@@ -18,14 +18,14 @@ class Dictionary():
             json_dictionary_file = 'C:/Dev/projects/dictionaryProd/data/dictionary.json'
         else:
             json_dictionary_file = 'C:/Dev/projects/dictionaryDev/data/dictionary.json'
-        logging.info("Dictionary initialized with: " + json_dictionary_file)
+        logger.info("Dictionary initialized with: " + json_dictionary_file)
         with open(json_dictionary_file) as json_file:
             self.dictionary = json.load(json_file)
 
     # Find words
     def find_words(self, search_type=CONST_SEARCH_EXACT, search_term='', language='nor'):
         if not self.dictionary:
-            logging.error("Dictionary not initialized...")
+            logger.error("Dictionary not initialized...")
             return None
         result = []
         # Loop all words in dictionary
@@ -51,7 +51,7 @@ class Dictionary():
     # Find abbriviations
     def find_abbriviations(self, search_type=CONST_SEARCH_EXACT, search_term=''):
         if not self.dictionary:
-            logging.error("Dictionary not initialized...")
+            logger.error("Dictionary not initialized...")
             return None
         result = []
         # Loop all words in dictionary

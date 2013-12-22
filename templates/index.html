@@ -5,7 +5,7 @@
         <link rel="shortcut icon" href="/static/img/favicon.ico">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>Normil ordliste</title>
+        <title>Landmilitær ordliste</title>
 
         <link href="../static/css/bootstrap.css" rel="stylesheet" media="screen">
         <link href="../static/css/bootstrap-responsive.css" rel="stylesheet">
@@ -38,21 +38,22 @@
             </div>
         </div>
         <br>
-        <div class="container-fluid">
-
-            <div class="well span10 offset1">
-            {% if not page or page == 'nor' %}
-                {% include "search_nor.html" %}
-            {% endif %}
-            {% if page == 'eng' %}
-                {% include "search_eng.html" %}
-            {% endif %}
-            {% if page == 'help' %}
-                {% include "help.html" %}
-            {% endif %}
-            {% if page == 'about' %}
-                {% include "about.html" %}
-            {% endif %}
+        <div class="container">
+            <div class="row">
+                <div class="well span10 offset1">
+                {% if not page or page == 'nor' %}
+                    {% include "search_nor.html" %}
+                {% endif %}
+                {% if page == 'eng' %}
+                    {% include "search_eng.html" %}
+                {% endif %}
+                {% if page == 'help' %}
+                    {% include "help.html" %}
+                {% endif %}
+                {% if page == 'about' %}
+                    {% include "about.html" %}
+                {% endif %}
+                </div>
             </div>
         </div>
     </body>

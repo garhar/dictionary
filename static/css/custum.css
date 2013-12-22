@@ -8,7 +8,6 @@ body {
     font-family:"Georgia", Times, serif;
     font-weight: bold;
     color: #000000;
-    /*background-color: rgba(113, 148, 175, 0.47);*/
 }
 
 .badge {
@@ -35,7 +34,6 @@ body {
     color:#000000;
     background-color: rgba(255, 239, 183, 0.64);
     vertical-align: top;
-    /*background-color: rgba(113, 148, 175, 0.47);*/
     font-size: large;
     font-weight: bold;
 }
@@ -71,7 +69,7 @@ body {
 .normal {
     font-size: small;
     font-weight: normal;
-    white-space: pre;
+    white-space: pre-wrap;
 }
 
 .search-query {
