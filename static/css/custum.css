@@ -61,7 +61,7 @@ body {
 }
 
 .word {
-    font-size: medium;
+    font-size: normal;
     font-weight: bold;
     white-space: pre-wrap;
 }
